@@ -34,3 +34,7 @@ ul {
     width: 800px;
     padding-bottom: 30px;
 }
+
+#logtitle, #total {
+    text-decoration: underline black;
+}
