@@ -1,0 +1,261 @@
+/* 
+
+Classes:
+    introtext
+    totop
+    skip
+    subtitle
+    ytembed
+    webgl
+    pdf
+    current (current page)
+
+IDs:
+    totop (ALL)
+    main (ALL)
+
+    whoami (index)
+    contents (index)
+    questions (index)
+
+    random (music)
+    cellosseum (music)
+    nikhilsim (music)
+    overdev (music)
+    granny (music)
+    bee (music)
+    gespinstish (music)
+    skyline (music)
+
+    email (contact)
+    linkedin (contact)
+    yt (contact)
+
+*/
+
+html {
+    scroll-behavior: smooth;
+}
+
+div {
+    display: block;
+    margin: auto;
+    margin-top: 30px;
+}
+
+div:last-child {
+    margin-bottom: 60px;
+}
+
+body {
+    background-color: #375373;
+    color: white;
+    font-size: 25px;
+    font-family: 'Poppins';
+    text-align: center;
+}
+
+nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+nav div {
+    padding: 10px;
+    border: 2px solid white;
+    border-radius: 5px;
+}
+
+@keyframes tabrotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(-50deg);
+    }
+    50% {
+        transform: rotate(0deg);
+    }
+    75% {
+        transform: rotate(50deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+.current {
+    font-size: 150%;
+    animation-name: tabrotate;
+    animation-duration: 7s;
+    animation-iteration-count: infinite;
+}
+
+nav div:last-child {
+    margin-bottom: 30px;
+}
+
+h1 {
+    font-size: 75px;
+    text-decoration: underline;
+}
+
+h2 {
+    font-size: 50px;
+}
+
+h2.subtitle {
+    font-size: 20px;
+    color: rgb(214, 214, 214);
+}
+
+h3 {
+    font-size: 40px;
+    color: rgb(166, 212, 255);
+}
+
+h3 a:hover {
+    color: rgb(75, 168, 255);
+}
+
+#email h2, #linkedin h2, #yt h2 {
+    font-size: 40px;
+    color: rgb(166, 212, 255);
+}
+
+#email h2 a:hover, #linkedin h2 a:hover, #yt h2 a:hover {
+    font-size: 40px;
+    color: rgb(166, 212, 255);
+}
+
+p {
+    padding: 0px 50px;
+}
+
+
+.totop {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+
+    background-color: white;
+    color: black;
+    border: 5px solid black;
+    border-top-left-radius: 5px;
+    padding: 0px 2px;
+}
+
+#skip {
+    background-color: white;
+    color: black;
+    border: 5px solid black;
+    border-bottom-right-radius: 5px;
+    padding: 0px 2px;
+    position: absolute;
+    left: -500px;
+}
+
+#skip:focus {
+    left: 0px;
+    top: 0px;
+}
+
+*:focus {
+    border: solid 3px red;
+}
+
+#medeets {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#mepic {
+    width: 500px;
+    margin: auto;
+}
+
+.pdf {
+    width: 1060px;
+    height: 800px;
+}
+
+iframe {
+    border: none;
+}
+
+.ytembed {
+    width: 560px;
+    height: 315px;
+}
+
+.webgl {
+    width: 960px;
+    height: 700px;
+}
+
+@media screen and (max-width: 600px) {
+
+    body {
+        font-size: 15px;
+    }
+
+    div {
+        margin-top: 15px;
+    }
+
+    p {
+        padding: 0px 20px;
+    }
+
+    h1 {
+        font-size: 25px;
+    }
+
+    h2 {
+        font-size: 25px;
+    }
+
+    h2.subtitle {
+        font-size: 10px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    .ytembed {
+        width: 300px;
+        height: 200px;
+    }
+
+    .webgl {
+        display: none;
+    }
+
+    .totop {
+        display: none;
+    }
+
+    .pdf {
+        width: 400px;
+        height: 400px;
+    }
+
+    #medeets {
+        display: inline;
+    }
+
+    #mepic {
+        width: 200px;
+        margin-top: 20px;
+    }
+    
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: unset;
+    }
+
+}
