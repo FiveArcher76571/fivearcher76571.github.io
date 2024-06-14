@@ -5,6 +5,7 @@ Classes:
     totop
     skip
     subtitle
+    link
     ytembed
     webgl
     pdf
@@ -133,7 +134,8 @@ p {
 }
 
 
-.totop {
+#totop {
+    display: none;
     position: fixed;
     bottom: 0;
     right: 0;
@@ -143,6 +145,17 @@ p {
     border: 5px solid black;
     border-top-left-radius: 5px;
     padding: 0px 2px;
+}
+
+#totop {
+    opacity: 0;
+    transition: opacity 1s, visibility 1s;
+}
+
+#totop.show {
+    display: block;
+    opacity: 1;
+    visibility: visible;
 }
 
 #skip {
@@ -186,6 +199,11 @@ iframe {
 .ytembed {
     width: 560px;
     height: 315px;
+}
+
+.link {
+    color: rgb(166, 212, 255);
+    text-decoration: underline;
 }
 
 .webgl {
