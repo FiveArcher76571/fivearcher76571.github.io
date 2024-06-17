@@ -6,6 +6,8 @@ Classes:
     skip
     subtitle
     link
+    itchsteam
+    itchsingle
     ytembed
     webgl
     pdf
@@ -18,7 +20,7 @@ IDs:
     whoami (index)
     contents (index)
     questions (index)
-
+    
     random (music)
     cellosseum (music)
     nikhilsim (music)
@@ -140,7 +142,8 @@ p {
     bottom: 0;
     right: 0;
 
-    background-color: white;
+    background-color: rgba(255, 255, 255, .4);
+    
     color: black;
     border: 5px solid black;
     border-top-left-radius: 5px;
@@ -173,9 +176,9 @@ p {
     top: 0px;
 }
 
-*:focus {
+/* *:focus {
     border: solid 3px red;
-}
+} */
 
 #medeets {
     display: grid;
@@ -197,6 +200,7 @@ iframe {
 }
 
 .ytembed {
+    margin: 20px;
     width: 560px;
     height: 315px;
 }
@@ -209,6 +213,20 @@ iframe {
 .webgl {
     width: 960px;
     height: 700px;
+}
+
+.itchsteam {
+    display: block;
+    padding: 5px;
+}
+
+.itchsteam img {
+    height: 75px;
+}
+
+.itchsingle {
+    height: 100px;
+    margin: 15px;
 }
 
 @media screen and (max-width: 600px) {
