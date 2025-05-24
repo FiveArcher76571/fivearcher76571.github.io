@@ -51,8 +51,8 @@ div:last-child {
 }
 
 body {
-    background-color: #375373;
-    color: white;
+    background-color: #91b8a0;
+    color: black;
     font-size: 25px;
     font-family: 'Poppins';
     text-align: center;
@@ -60,7 +60,7 @@ body {
 
 nav {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 nav div {
@@ -69,29 +69,8 @@ nav div {
     border-radius: 5px;
 }
 
-@keyframes tabrotate {
-    0% {
-        transform: rotate(0deg);
-    }
-    25% {
-        transform: rotate(-50deg);
-    }
-    50% {
-        transform: rotate(0deg);
-    }
-    75% {
-        transform: rotate(50deg);
-    }
-    100% {
-        transform: rotate(0deg);
-    }
-}
-
 .current {
     font-size: 150%;
-    animation-name: tabrotate;
-    animation-duration: 7s;
-    animation-iteration-count: infinite;
 }
 
 nav div:last-child {
@@ -104,7 +83,7 @@ h1 {
 }
 
 h2 {
-    font-size: 50px;
+    font-size: 40px;
 }
 
 h2.subtitle {
@@ -180,13 +159,22 @@ p {
     border: solid 3px red;
 } */
 
-#medeets {
+#perfdeets {
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
 
-#mepic {
+#perfpics {
     width: 500px;
+    margin: auto;
+}
+
+.desctext {
+    font-size: 20px;
+}
+
+#invitepic {
+    width: 1000px;
     margin: auto;
 }
 
@@ -199,6 +187,11 @@ iframe {
     border: none;
 }
 
+.gforms {
+    width: 900px;
+    height: 900px;
+}
+
 .ytembed {
     margin: 20px;
     width: 560px;
@@ -206,7 +199,7 @@ iframe {
 }
 
 .link {
-    color: rgb(166, 212, 255);
+    color: rgb(23, 96, 164);
     text-decoration: underline;
 }
 
@@ -244,11 +237,15 @@ iframe {
     }
 
     h1 {
-        font-size: 25px;
+        font-size: 35px;
     }
 
     h2 {
-        font-size: 25px;
+        font-size: 17px;
+    }
+
+    .h2head {
+        font-size: 20px;
     }
 
     h2.subtitle {
@@ -257,6 +254,15 @@ iframe {
 
     h3 {
         font-size: 20px;
+    }
+
+    .desctext {
+        font-size: 15px;
+    }
+
+    .gforms {
+        width: 500px;
+        height: 1000px;
     }
 
     .ytembed {
@@ -277,12 +283,17 @@ iframe {
         height: 400px;
     }
 
-    #medeets {
+    #perfdeets {
         display: inline;
     }
 
-    #mepic {
-        width: 200px;
+    #perfpics {
+        width: 500px;
+        margin: auto;
+    }
+
+    #invitepic {
+        width: 500px;
         margin-top: 20px;
     }
     
