@@ -240,16 +240,30 @@ iframe {
 
 /* Style the front side (fallback if image is missing) */
 .flip-card-front {
-  background-color: #bbb;
+  background-color: #91b8a0;
   color: black;
 }
 
 /* Style the back side */
 .flip-card-back {
-  background-color: dodgerblue;
-  color: white;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
   transform: rotateY(180deg);
-} 
+}
+
+.flip-card-back h1 {
+    font-size: 60px;
+    padding-bottom: 5px;
+}
+
+.flip-card-back p {
+    font-size: 20px;
+}
+
+#blurb {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
 
 
 
@@ -336,6 +350,20 @@ iframe {
     .gforms {
         width: 400px;
         height: 1600px;
+    }
+
+    .flip-card {
+        width: 400px;
+        height: 267px;
+    }
+
+    .flip-card-back h1 {
+        font-size: 20px;
+        padding-bottom: 5px;
+    }
+
+    .flip-card-back p {
+        font-size: 10px;
     }
     
 }
