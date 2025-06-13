@@ -36,7 +36,7 @@ nav div {
 
 .current {
     padding: 7px;
-    border: 2px solid white;
+    border: 3px solid rgb(0, 0, 0);
     border-radius: 5px;
 }
 
@@ -82,7 +82,7 @@ h3 a:hover {
 }
 
 p {
-    padding: 0px 50px;
+    padding: 0px 140px;
 }
 
 #skip {
@@ -140,7 +140,7 @@ iframe {
 
 .gforms {
     width: 900px;
-    height: 2000px;
+    height: 900px;
 }
 
 .ytembed {
@@ -164,6 +164,11 @@ iframe {
     margin: auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
+}
+
+.bullet_list {
+    margin: 30px 140px;
+    font-weight: bold;
 }
 
 
@@ -216,8 +221,7 @@ iframe {
     }
 
     .gforms {
-        width: 500px;
-        height: 1000px;
+        width: 600px;
     }
 
     .ytembed {
@@ -258,11 +262,19 @@ iframe {
 
     .gforms {
         width: 400px;
-        height: 1600px;
+        height: 950px;
     }
 
     #blurb {
         font-size: 20px;
+    }
+
+    .bullet_list {
+        margin: 30px 30px;
+        font-weight: bold;
+    }
+    .bullet_list ul li {
+        margin: 5px;
     }
     
 }
