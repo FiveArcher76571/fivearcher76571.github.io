@@ -60,38 +60,13 @@ body {
 
 nav {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-}
-
-nav div {
-    padding: 10px;
-    border: 2px solid white;
-    border-radius: 5px;
-}
-
-@keyframes tabrotate {
-    0% {
-        transform: rotate(0deg);
-    }
-    25% {
-        transform: rotate(-50deg);
-    }
-    50% {
-        transform: rotate(0deg);
-    }
-    75% {
-        transform: rotate(50deg);
-    }
-    100% {
-        transform: rotate(0deg);
-    }
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
 
 .current {
-    font-size: 150%;
-    animation-name: tabrotate;
-    animation-duration: 7s;
-    animation-iteration-count: infinite;
+    padding: 10px;
+    border: 2px solid white;
+    border-radius: 5px;
 }
 
 nav div:last-child {
