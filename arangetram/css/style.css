@@ -8,6 +8,14 @@ div {
     margin-top: 30px;
 }
 
+.perftext {
+    text-align: left;
+}
+
+.h2head {
+    text-align: center;
+}
+
 div:last-child {
     margin-bottom: 60px;
 }
@@ -22,7 +30,7 @@ body {
 
 nav {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     padding-bottom: 20px;
 }
 
@@ -114,6 +122,11 @@ p {
     margin: auto;
 }
 
+#geetapic {
+    width: 800px;
+    margin: auto;
+}
+
 #perfsolo {
     width: 800px;
     margin: auto;
@@ -167,8 +180,13 @@ iframe {
 }
 
 .bullet_list {
-    margin: 30px 140px;
+    margin: 10px 150px;
     font-weight: bold;
+}
+
+.bullet_list ul {
+    list-style-type: disc;
+    list-style-position: inside;
 }
 
 
@@ -181,7 +199,7 @@ iframe {
     }
 
     body {
-        font-size: 15px;
+        font-size: 18px;
     }
 
     div {
@@ -205,7 +223,7 @@ iframe {
     }
 
     .h2head {
-        font-size: 20px;
+        font-size: 25px;
     }
 
     h2.subtitle {
@@ -261,8 +279,8 @@ iframe {
     }
 
     .gforms {
-        width: 400px;
-        height: 950px;
+        width: 300px;
+        height: 1200px;
     }
 
     #blurb {
@@ -270,7 +288,7 @@ iframe {
     }
 
     .bullet_list {
-        margin: 30px 30px;
+        margin: 10px 10px;
         font-weight: bold;
     }
     .bullet_list ul li {
