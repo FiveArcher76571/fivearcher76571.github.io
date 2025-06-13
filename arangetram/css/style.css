@@ -238,10 +238,6 @@ iframe {
         font-size: 15px;
     }
 
-    .gforms {
-        width: 600px;
-    }
-
     .ytembed {
         width: 300px;
         height: 200px;
@@ -279,8 +275,8 @@ iframe {
     }
 
     .gforms {
-        width: 350px;
-        height: 1400px;
+        width: 300px;
+        height: 1450px;
     }
 
     #blurb {
