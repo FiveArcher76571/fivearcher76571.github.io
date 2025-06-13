@@ -107,7 +107,7 @@ h3 a:hover {
 }
 
 p {
-    padding: 0px 100px;
+    padding: 0px 160px;
 }
 
 
@@ -158,6 +158,10 @@ p {
 #medeets {
     display: grid;
     grid-template-columns: 1fr 1fr;
+}
+
+#medeets p {
+    padding: 0px 70px;
 }
 
 #mepic {
