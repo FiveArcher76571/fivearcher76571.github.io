@@ -13,11 +13,12 @@ div {
 }
 
 .h2head {
+    padding-top: 10px;
     text-align: center;
 }
 
 div:last-child {
-    margin-bottom: 60px;
+    margin-bottom: 20px;
 }
 
 body {
@@ -49,7 +50,7 @@ nav div {
 }
 
 nav div:last-child {
-    margin-bottom: 7px;
+    margin-bottom: 0px;
 }
 
 h1 {
@@ -77,11 +78,6 @@ h3 {
 
 h3 a:hover {
     color: rgb(75, 168, 255);
-}
-
-#email h2, #linkedin h2, #yt h2 {
-    font-size: 40px;
-    color: rgb(166, 212, 255);
 }
 
 #email h2 a:hover, #linkedin h2 a:hover, #yt h2 a:hover {
@@ -130,7 +126,7 @@ p {
 #perfsolo {
     width: 800px;
     margin: auto;
-    padding-bottom: 30px;
+    padding-bottom: 10px;
 }
 
 .desctext {
@@ -180,7 +176,7 @@ iframe {
 }
 
 .bullet_list {
-    margin: 10px 150px;
+    margin: 0px 150px;
     font-weight: bold;
 }
 
@@ -211,15 +207,23 @@ iframe {
     }
 
     h1 {
-        font-size: 30px;
+        font-size: 20px;
+    }
+
+    .venkateshname {
+        font-size: 17px;
+    }
+
+    .venkateshinst {
+        font-size: 15px;
     }
 
     #sirtitle {
-        font-size: 25px;
+        font-size: 18px;
     }
 
     h2 {
-        font-size: 17px;
+        font-size: 13px;
     }
 
     .h2head {
@@ -236,15 +240,6 @@ iframe {
 
     .desctext {
         font-size: 15px;
-    }
-
-    .ytembed {
-        width: 300px;
-        height: 200px;
-    }
-
-    .webgl {
-        display: none;
     }
 
     .totop {
@@ -271,7 +266,6 @@ iframe {
 
     #invitepic {
         width: 500px;
-        margin-top: 20px;
     }
 
     .gforms {
@@ -284,7 +278,7 @@ iframe {
     }
 
     .bullet_list {
-        margin: 10px 10px;
+        margin: 0px 10px;
         font-weight: bold;
     }
     .bullet_list ul li {
