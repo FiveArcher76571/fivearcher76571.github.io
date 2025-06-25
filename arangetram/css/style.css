@@ -59,6 +59,11 @@ h1 {
     text-decoration: underline;
 }
 
+.rsvph1 {
+    font-size: 50px;
+    padding-top: 5px;
+}
+
 #sirtitle {
     font-size: 60px;
 }
@@ -150,7 +155,7 @@ iframe {
 
 .gforms {
     width: 900px;
-    height: 1700px;
+    height: 1150px;
 }
 
 .ytembed {
@@ -209,6 +214,10 @@ iframe {
 
     h1 {
         font-size: 20px;
+    }
+
+    .rsvph1 {
+        font-size: 16px;
     }
 
     .venkateshname {
