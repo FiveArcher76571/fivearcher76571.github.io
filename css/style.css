@@ -12,13 +12,13 @@ Classes:
     webgl
     pdf
     current (current page)
+    contact_btns
 
 IDs:
     totop (ALL)
     main (ALL)
 
     whoami (index)
-    contents (index)
     questions (index)
     
     random (music)
@@ -67,10 +67,6 @@ nav {
     padding: 10px;
     border: 2px solid white;
     border-radius: 5px;
-}
-
-nav div:last-child {
-    margin-bottom: 30px;
 }
 
 h1 {
@@ -151,16 +147,14 @@ p {
     top: 0px;
 }
 
-/* *:focus {
-    border: solid 3px red;
-} */
-
 #medeets {
+    padding: 0px 100px;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
 
 #medeets p {
+    margin: auto;
     padding: 0px 70px;
 }
 
@@ -208,9 +202,31 @@ iframe {
     margin: 15px;
 }
 
+.contact_btns {
+    padding: 0px 300px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.contact_btns div {
+    margin: auto;
+}
+
+.contact_btns div a img {
+    width: 100px;
+}
+
 @media screen and (max-width: 600px) {
 
     body {
+        font-size: 15px;
+    }
+
+    nav div a {
+        font-size: 10px;
+    }
+
+    .current {
         font-size: 15px;
     }
 
@@ -263,6 +279,14 @@ iframe {
     #mepic {
         width: 200px;
         margin-top: 20px;
+    }
+
+    .contact_btns {
+        display: inline;
+    }
+    
+    .contact_btns div {
+        padding-bottom: 50px;
     }
     
 }
