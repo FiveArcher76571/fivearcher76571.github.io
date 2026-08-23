@@ -10,6 +10,7 @@ This is the documentation for SAIEngine, where you can find an explanation of th
 - Fluidsynth-powered live synthesis/MIDI playback using SoundFonts
   - MIDI controller support for use as a synth controller or game input
 - Portable design - works on Windows, Mac, and Linux machines
+- ...and more!
 
 ## How to Download/Use
 
