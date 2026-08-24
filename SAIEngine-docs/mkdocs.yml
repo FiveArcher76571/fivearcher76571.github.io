@@ -1,4 +1,4 @@
 site_name: SAIEngine Documentation
 nav:
   - Home: index.md
-  - Engine Semantics: semantics.md
+  - Semantics: semantics.md

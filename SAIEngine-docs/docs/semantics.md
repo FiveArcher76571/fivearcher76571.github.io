@@ -181,3 +181,14 @@ resources/
 
 Notice how the `resources` directory is right next to the engine's executable. Be sure that's the case; if it's anywhere else it won't be read!
 
+## [The Gauntlet (Demo Project)](https://fivearcher76571.github.io/resources/The.Gauntlet.SAIEngine.Demo.zip)
+
+If you're interested in seeing a demo of all these concepts in action, I just so happen to have one for you! It's a game I made as part of my final submission for this engine. Feel free to look through the files and use them as you see fit (all the assets are my own, and I give you permission to mess with them).
+
+You can find the files for the game by clicking the link in the header. Have fun!
+
+## Conclusion
+
+And those are the basics of understanding SAIEngine! I'm sure you LOVED reading this huge block of text. But if you need a TL;DR, I highly recommend **just messing around with it!** Actually making something using the engine is a great way to learn the ins-and-outs of how it works (and that's good advice for learning just about anything new). Check back here, in the demo project, and in the API Reference when you need a refresher, and you should be good to go!
+
+Most importantly, hope you have fun! :D
