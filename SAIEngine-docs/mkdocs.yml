@@ -2,3 +2,4 @@ site_name: SAIEngine Documentation
 nav:
   - Home: index.md
   - Semantics: semantics.md
+  - API Reference: apiref.md
