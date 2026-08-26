@@ -308,3 +308,27 @@ Camera.SetZoom(0.5) -- Zoom the camera out twice the default distance
 Camera.SetZoom(2.0) -- Zoom the camera in twice the default distance
 Camera.SetZoom(1.0) -- Zoom the camera to the default distance
 ```
+
+## Console
+
+Functions to output text to the console
+
+### Console.Print(string: message)
+
+Print a standard message to the console followed by a newline (`std::endl` in C++)
+
+#### Usage
+
+```lua
+Console.Print("Hello!!!") -- Outputs "Hello!!!" (without quotes) to the console
+```
+
+### Console.PrintError(string: message)
+
+Print an error message to the console (text colored red) followed by a newline (`std::endl` in C++)
+
+#### Usage
+
+```lua
+Console.PrintError("Error: AAAA") -- Outputs "Error: AAAA" (without quotes) to the console
+```
