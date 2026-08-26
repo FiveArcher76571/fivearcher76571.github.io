@@ -6,6 +6,84 @@ This is a page of the full SAIEngine API, including the various functions availa
 
 This page is organized by class or namespace (sorted alphabetically, unless it makes sense to not do that), with the available member functions of said class or namespace listed under each. Each function will include a code snippet describing its usage.
 
+## Lifecycle Functions
+
+Functions to be defined in components that are called as the program progresses
+
+Listed by order of their execution
+
+### OnStart
+
+Called on component instantiation (once). If the component is defined in the initial scene, this is frame 0 (before the program begins)
+
+#### Usage
+
+```lua
+Component = {
+    OnStart = function(self)
+
+        -- All code here is executed once, on the frame this component is instantiated
+
+    end
+}
+```
+
+### OnUpdate
+
+Called every frame after (and not including) component instantiation until the component is destroyed
+
+#### Usage
+
+```lua
+Component = {
+    OnUpdate = function(self)
+
+        -- All code here is executed every frame
+
+    end
+}
+```
+
+### OnLateUpdate
+
+Called every frame, but after OnUpdate is called for every other component loaded in the scene
+
+#### Usage
+
+```lua
+Component = {
+    OnUpdate = function(self)
+
+        -- All code here is executed every frame
+
+    end,
+    
+    OnLateUpdate = function(self)
+
+        -- All code here is executed every frame after OnUpdate is finished
+        -- For example, if this is the only component in the scene...
+        -- This code will execute after the above code in OnUpdate is executed
+
+    end
+}
+```
+
+### OnDestroy
+
+Called on component destruction (once)
+
+#### Usage
+
+```lua
+Component = {
+    OnDestroy = function(self)
+
+        -- All code here is executed on the frame this component is destroyed
+
+    end
+}
+```
+
 ## Actor (class)
 
 Functions that read and modify actors and their components
