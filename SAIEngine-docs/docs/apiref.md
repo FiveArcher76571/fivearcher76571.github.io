@@ -84,9 +84,23 @@ Component = {
 }
 ```
 
+## vec2 (object type)
+
+A data type to store two floats (i.e. a geometric vector)
+
+This simply exposes the `x` and `y` properties of the underlying `glm::vec2` data type
+
+### vec2.x (property)
+
+The X coordinate of the vector (first of two numbers)
+
+### vec2.y (property)
+
+The Y coordinate of the vector (second of two numbers)
+
 ## Actor (object type)
 
-Functions that read and modify actors and their components
+A data type for actors, allowing access to actor information and stored component details
 
 **Note**: these functions are used on actor objects, and as such you need to **use a colon** to refer to them.
 
@@ -332,3 +346,6 @@ Print an error message to the console (text colored red) followed by a newline (
 ```lua
 Console.PrintError("Error: AAAA") -- Outputs "Error: AAAA" (without quotes) to the console
 ```
+
+## Image
+
