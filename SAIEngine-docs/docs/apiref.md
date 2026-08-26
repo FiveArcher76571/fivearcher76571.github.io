@@ -1,6 +1,6 @@
 # API Reference
 
-###### Last Updated: August 24th, 2026
+###### Last Updated: August 26th, 2026
 
 This is a page of the full SAIEngine API, including the various functions available to you as a developer.
 
@@ -10,7 +10,7 @@ This page is organized by class or namespace (sorted alphabetically, unless it m
 
 Functions to be defined in components that are called as the program progresses
 
-Listed by order of their execution
+Listed by order of their execution (TL;DR: OnStart -> OnUpdate -> OnLateUpdate -> OnDestroy)
 
 ### OnStart
 
@@ -84,7 +84,7 @@ Component = {
 }
 ```
 
-## Actor (class)
+## Actor (object type)
 
 Functions that read and modify actors and their components
 
@@ -215,7 +215,7 @@ actor_to_destroy = Actor.Find("actor_name") -- Gets the actor and assigns it to 
 Actor.Destroy(actor_to_destroy)
 ```
 
-## Application (namespace)
+## Application
 
 Functions that track application-level information
 
@@ -243,7 +243,7 @@ Application.OpenURL("https://www.youtube.com/@ScottTheWoz") -- An important YouT
 
 Quits the program safely on the frame it's called
 
-(on the C++ level, it simply calls `exit(0);`)
+(on the C++ level, it simply calls `exit(0)`)
 
 #### Usage
 
@@ -259,4 +259,52 @@ Pauses the application for `ms` milliseconds universally. Everything stops.
 
 ```lua
 Application.Sleep(5000) -- Pauses for 5,000 milliseconds (5 seconds)
+```
+
+## Camera
+
+Functions that check and manipulate camera parameters
+
+### Camera.GetPosition()
+
+Gets the camera's position in world coordinates as a vec2 object
+
+#### Usage
+
+```lua
+cam_pos = Camera.GetPosition() -- Camera's position as a vec2 object
+cam_x = cam_pos.x -- Gets camera's X position
+cam_y = cam_pos.y -- Gets camera's Y position
+```
+
+### Camera.SetPosition(int: x, int: y, bool: easing)
+
+Sets the camera's position and whether to ease it there or not
+
+#### Usage
+
+```lua
+Camera.SetPosition(0, 0, true) -- Smoothly shift the camera to world position (0,0)
+```
+
+### Camera.GetZoom()
+
+Gets the camera's current zoom factor
+
+#### Usage
+
+```lua
+zoom_factor = Camera.GetZoom() -- Gets the zoom factor as a float
+```
+
+### Camera.SetZoom(float: zoom)
+
+Sets the camera's zoom factor
+
+#### Usage
+
+```lua
+Camera.SetZoom(0.5) -- Zoom the camera out twice the default distance
+Camera.SetZoom(2.0) -- Zoom the camera in twice the default distance
+Camera.SetZoom(1.0) -- Zoom the camera to the default distance
 ```
