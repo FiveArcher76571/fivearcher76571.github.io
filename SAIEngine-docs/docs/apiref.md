@@ -98,6 +98,20 @@ The X coordinate of the vector (first of two numbers)
 
 The Y coordinate of the vector (second of two numbers)
 
+## ivec2 (object type)
+
+A data type to store two integers (i.e. a geometric vector)
+
+This simply exposes the `x` and `y` properties of the underlying `glm::ivec2` data type
+
+### ivec2.x (property)
+
+The X coordinate of the vector (first of two numbers)
+
+### ivec2.y (property)
+
+The Y coordinate of the vector (second of two numbers)
+
 ## Actor (object type)
 
 A data type for actors, allowing access to actor information and stored component details
@@ -349,3 +363,88 @@ Console.PrintError("Error: AAAA") -- Outputs "Error: AAAA" (without quotes) to t
 
 ## Image
 
+Functions to render/draw onto the screen (supports .PNG files for images)
+
+### Image.Draw(string: image_filename, float: x, float: y)
+
+Draw the given image file `image_filename.png` at world coordinates (x,y)
+
+#### Usage
+
+```lua
+Image.Draw("sprite", 0, 0) -- Draws the image "sprite.png" at the center of the camera (0,0)
+```
+
+### Image.DrawEx(string: image_filename, float: pos_x, float: pos_y, int: rotation, float: scale_x, float: scale_y, float: pivot_x, float: pivot_y, int: r, int: g, int: b, int: a, int: sorting_order)
+
+Draw the given image file `image_filename.png` to the world with extended parameters:
+
+- X position (world coordinates)
+- Y position (world coordinates)
+- Rotation (degrees clockwise)
+- X scale multiplier
+- Y scale multiplier
+- Pivot X position ("center" x-coordinate of image)
+- Pivot Y position ("center" y-coordinate of image)
+- Red color parameter (0-255)
+- Green color parameter (0-255)
+- Blue color parameter (0-255)
+- Alpha parameter (0-255)
+- Sorting order (relative to other rendered images)
+
+#### Usage
+
+```lua
+-- Draws image "sprite.png" at world coordinate (0,0), rotated 90-degrees clockwise, twice as big,
+-- with its center at (50,50) in image pixels (this will fall at the given world coordinate),
+-- with blue colors removed, at full opacity, sorted at order 10
+-- (the sorting order only matters if you have other images rendered on screen at the same time)
+Image.DrawEx("sprite", 0, 0, 90, 2, 2, 50, 50, 255, 255, 0, 255, 10)
+```
+
+### Image.DrawUI(string: image_filename, int: x, int: y)
+
+Draw the given image file `image_filename.png` at window coordinates (x,y)
+
+This draws images on top of all other screen elements (i.e. like UI elements)
+
+#### Usage
+
+```lua
+Image.DrawUI("sprite", 0, 0) -- Draws the image "sprite.png" at the top left corner of the screen
+```
+
+### Image.DrawUIEx(string: image_filename, float: pos_x, float: pos_y, int: r, int: g, int: b, int: a, int: sorting_order)
+
+Draw the given image file `image_filename.png` to the window with extended parameters:
+
+- X position (world coordinates)
+- Y position (world coordinates)
+- Red color parameter (0-255)
+- Green color parameter (0-255)
+- Blue color parameter (0-255)
+- Alpha parameter (0-255)
+- Sorting order (relative to other rendered images)
+
+#### Usage
+
+```lua
+-- Draws image "sprite.png" at window coordinate (0,0),
+-- with blue colors removed, at full opacity, sorted at order 10
+-- (the sorting order only matters if you have other images rendered on screen at the same time)
+Image.DrawUIEx("sprite", 0, 0, 255, 255, 0, 255, 10)
+```
+
+### Image.DrawPixel(int: x, int: y, int: r, int: g, int: b, int: a)
+
+Draw a pixel of the given RGBA color to the screen at window coordinates (x,y)
+
+#### Usage
+
+```lua
+Image.DrawPixel(100, 100, 255, 255, 255, 255) -- Draw a white pixel at window coordinates (100, 100)
+```
+
+## Input
+
+Functions that manage input from the keyboard, mouse, or MIDI controller
