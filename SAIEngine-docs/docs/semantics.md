@@ -150,7 +150,7 @@ PlayerMovement = {
 }
 ```
 
-You'll find that there are a bunch more API functions at your disposal! To see them all, see the API Reference section of these docs.
+You'll find that there are a bunch more API functions at your disposal! To see them all, see the [API Reference](apiref.md) section of these docs.
 
 ## File Structure
 
