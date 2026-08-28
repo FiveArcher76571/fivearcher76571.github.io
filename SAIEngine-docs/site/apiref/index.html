@@ -145,7 +145,7 @@
                     <div class="col-md-9" role="main">
 
 <h1 id="api-reference">API Reference</h1>
-<h6 id="last-updated-august-26th-2026">Last Updated: August 26th, 2026</h6>
+<h6 id="last-updated-august-27th-2026">Last Updated: August 27th, 2026</h6>
 <p>This is a page of the full SAIEngine API, including the various functions available to you as a developer.</p>
 <p>This page is organized by class or namespace (sorted alphabetically, unless it makes sense to not do that), with the available member functions of said class or namespace listed under each.</p>
 <p>Each function will include a return type if the function is non-void , as well as a code snippet describing its usage</p>
@@ -572,17 +572,58 @@ RAudio.ResetLoopPoints(0) -- Reset the loop points that we set above
 RAudio.GetBPM(0) -- Returns 120
 </code></pre>
 <h3 id="raudiosetbpmint-channel-int-bpm">RAudio.SetBPM(int: channel, int: BPM)</h3>
+<p>Set a BPM for the given channel</p>
+<h4 id="usage_54">Usage</h4>
+<pre><code class="language-lua">RAudio.SetBPM(0, 120) -- Set channel 0's BPM to 120
+</code></pre>
+<h3 id="raudioisonbeatint-channel-int-buffer-bool">RAudio.IsOnBeat(int: channel, int: buffer) -&gt; bool</h3>
+<p>Checks whether, on the current frame, the given channel's track is on a new beat, +/- <code>buffer</code> in milliseconds</p>
+<p>This function will only work if the track has a BPM set, otherwise it will always return false</p>
+<h4 id="usage_55">Usage</h4>
+<pre><code class="language-lua">RAudio.SetBPM(0, 120) -- Set channel 0's BPM to 120
+RAudio.Play(0, &quot;track&quot;, true) -- Play audio file &quot;track.wav/.mp3&quot; with looping on channel 0
+
+-- Later on...
+
+-- Only evaluates to true if, on this frame, the track is within 100ms of a new beat
+if RAudio.IsOnBeat(0, 100) then Console.Log(&quot;On beat!!&quot;) end
+</code></pre>
+<h3 id="raudiogetmeasurelengthint-channel-int">RAudio.GetMeasureLength(int: channel) -&gt; int</h3>
+<p>Get the measure length of the given channel in milliseconds</p>
+<p>If you haven't set a measure length for the track, this will return 0</p>
+<h4 id="usage_56">Usage</h4>
+<pre><code class="language-lua">RAudio.SetMeasureLength(0, 4) -- Sets channel 0's measure length to 4 beats
+RAudio.GetBPM(0) -- Returns 4
+</code></pre>
+<h3 id="raudiosetmeasurelengthint-channel-int-measure_length">RAudio.SetMeasureLength(int: channel, int: measure_length)</h3>
+<p>Set the measure length of the given channel to <code>measure_length</code> in milliseconds</p>
+<h4 id="usage_57">Usage</h4>
+<pre><code class="language-lua">RAudio.SetMeasureLength(0, 4) -- Sets channel 0's measure length to 4 beats
+</code></pre>
+<h3 id="raudioisnewmeasureint-channel-int-buffer-bool">RAudio.IsNewMeasure(int: channel, int: buffer) -&gt; bool</h3>
+<p>Checks whether, on the current frame, the given channel's track has begun a new measure, +/- <code>buffer</code> in milliseconds</p>
+<p>This function will only work if the track has a measure length and BPM set, otherwise it will always return false</p>
+<h4 id="usage_58">Usage</h4>
+<pre><code class="language-lua">RAudio.SetMeasureLength(0, 4) -- Set channel 0's measure length to 4 beats
+RAudio.SetBPM(0, 120) -- Set channel 0's BPM to 120
+RAudio.Play(0, &quot;track&quot;, true) -- Play audio file &quot;track.wav/.mp3&quot; with looping on channel 0
+
+-- Later on...
+
+-- Only evaluates to true if, on this frame, the track is within 100ms of a new measure
+if RAudio.IsNewMeasure(0, 100) then Console.Log(&quot;New measure!!&quot;) end
+</code></pre>
 <h2 id="scene">Scene</h2>
 <p>Functions that get scene info</p>
 <h3 id="scenegetname-string">Scene.GetName() -&gt; string</h3>
 <p>Gets the current scene's name</p>
-<h4 id="usage_54">Usage</h4>
+<h4 id="usage_59">Usage</h4>
 <pre><code class="language-lua">curr_scene = Scene.GetName() -- Gets the current scene's name
 </code></pre>
 <h3 id="sceneswitchstring-scene_name">Scene.Switch(string: scene_name)</h3>
 <p>Switches the scene to the given scene <code>scene_name</code> (pulls from the file <code>scene_name.scene</code>)</p>
 <p>This unloads all actors and their components (<strong>does NOT call OnDestroy</strong>), and loads the actors and components of the new scene</p>
-<h4 id="usage_55">Usage</h4>
+<h4 id="usage_60">Usage</h4>
 <pre><code class="language-lua">Scene.Switch('scene2') -- Switches to the scene &quot;scene2.scene&quot;
 Scene.Switch(Scene.GetName()) -- Equivalent to reloading the current scene
 </code></pre>
@@ -602,7 +643,7 @@ Scene.Switch(Scene.GetName()) -- Equivalent to reloading the current scene
 <li>Blue color parameter (0-255)</li>
 <li>Alpha parameter (0-255)</li>
 </ul>
-<h4 id="usage_56">Usage</h4>
+<h4 id="usage_61">Usage</h4>
 <pre><code class="language-lua">-- Draws the text &quot;Hello!!!&quot; (without quotations) to the screen
 -- at the top left corner of the screen (0,0), using font &quot;font.ttf&quot;,
 -- at size 16, colored red, at full opacity
@@ -612,7 +653,7 @@ Text.Draw(&quot;Hello!!!&quot;, 0, 0, &quot;font&quot;, 16, 255, 0, 0, 255)
 <p>Functions to get and manipulate window info</p>
 <h3 id="windowgetpos-ivec2">Window.GetPos() -&gt; ivec2</h3>
 <p>Get the window's position on the computer screen (relative to the top-left corner of the window)</p>
-<h4 id="usage_57">Usage</h4>
+<h4 id="usage_62">Usage</h4>
 <pre><code class="language-lua">window_pos = Window.GetPos() -- Get window position vector
 window_x = window_pos.x -- Get window X position
 window_y = window_pos.y -- Get window Y position
@@ -623,7 +664,7 @@ window_y = window_pos.y -- Get window Y position
 </code></pre>
 <h3 id="windowgetsize-ivec2">Window.GetSize() -&gt; ivec2</h3>
 <p>Get the window's width and height in pixels (resolution)</p>
-<h4 id="usage_58">Usage</h4>
+<h4 id="usage_63">Usage</h4>
 <pre><code class="language-lua">window_size = Window.GetSize() -- Get window size vector
 window_width = window_size.x -- Get window width
 window_height = window_size.y -- Get window height

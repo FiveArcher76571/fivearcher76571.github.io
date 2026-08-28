@@ -1,6 +1,6 @@
 # API Reference
 
-###### Last Updated: August 26th, 2026
+###### Last Updated: August 27th, 2026
 
 This is a page of the full SAIEngine API, including the various functions available to you as a developer.
 
@@ -753,7 +753,73 @@ RAudio.GetBPM(0) -- Returns 120
 
 ### RAudio.SetBPM(int: channel, int: BPM)
 
+Set a BPM for the given channel
 
+#### Usage
+
+```lua
+RAudio.SetBPM(0, 120) -- Set channel 0's BPM to 120
+```
+
+### RAudio.IsOnBeat(int: channel, int: buffer) -> bool
+
+Checks whether, on the current frame, the given channel's track is on a new beat, +/- `buffer` in milliseconds
+
+This function will only work if the track has a BPM set, otherwise it will always return false
+
+#### Usage
+
+```lua
+RAudio.SetBPM(0, 120) -- Set channel 0's BPM to 120
+RAudio.Play(0, "track", true) -- Play audio file "track.wav/.mp3" with looping on channel 0
+
+-- Later on...
+
+-- Only evaluates to true if, on this frame, the track is within 100ms of a new beat
+if RAudio.IsOnBeat(0, 100) then Console.Log("On beat!!") end
+```
+
+### RAudio.GetMeasureLength(int: channel) -> int
+
+Get the measure length of the given channel in milliseconds
+
+If you haven't set a measure length for the track, this will return 0
+
+#### Usage
+
+```lua
+RAudio.SetMeasureLength(0, 4) -- Sets channel 0's measure length to 4 beats
+RAudio.GetBPM(0) -- Returns 4
+```
+
+### RAudio.SetMeasureLength(int: channel, int: measure_length)
+
+Set the measure length of the given channel to `measure_length` in milliseconds
+
+#### Usage
+
+```lua
+RAudio.SetMeasureLength(0, 4) -- Sets channel 0's measure length to 4 beats
+```
+
+### RAudio.IsNewMeasure(int: channel, int: buffer) -> bool
+
+Checks whether, on the current frame, the given channel's track has begun a new measure, +/- `buffer` in milliseconds
+
+This function will only work if the track has a measure length and BPM set, otherwise it will always return false
+
+#### Usage
+
+```lua
+RAudio.SetMeasureLength(0, 4) -- Set channel 0's measure length to 4 beats
+RAudio.SetBPM(0, 120) -- Set channel 0's BPM to 120
+RAudio.Play(0, "track", true) -- Play audio file "track.wav/.mp3" with looping on channel 0
+
+-- Later on...
+
+-- Only evaluates to true if, on this frame, the track is within 100ms of a new measure
+if RAudio.IsNewMeasure(0, 100) then Console.Log("New measure!!") end
+```
 
 ## Scene
 

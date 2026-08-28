@@ -22,4 +22,4 @@ This is the documentation for SAIEngine, where you can find an explanation of th
 
 ## How to Navigate the Docs
 
-The top navigation bar contains all the main sections of the documentation. Visit the [Semantics](semantics.md) section to learn about how exactly SAIEngine functions and core concepts it uses. Visit the "API Reference" section to see the various functions at your disposal.
+The top navigation bar contains all the main sections of the documentation. Visit the [Semantics](semantics.md) section to learn about how exactly SAIEngine functions and core concepts it uses. Visit the [API Reference](apiref.md) section to see the various functions at your disposal.
