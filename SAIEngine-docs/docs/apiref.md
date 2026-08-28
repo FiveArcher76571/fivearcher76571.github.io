@@ -4,7 +4,9 @@
 
 This is a page of the full SAIEngine API, including the various functions available to you as a developer.
 
-This page is organized by class or namespace (sorted alphabetically, unless it makes sense to not do that), with the available member functions of said class or namespace listed under each. Each function will include a code snippet describing its usage.
+This page is organized by class or namespace (sorted alphabetically, unless it makes sense to not do that), with the available member functions of said class or namespace listed under each.
+
+Each function will include a return type if the function is non-void , as well as a code snippet describing its usage
 
 ## Lifecycle Functions
 
@@ -640,4 +642,58 @@ vel = Input.GetMIDIVelocity(60) -- Get velocity of MIDI key 60
 if vel > 0 then Console.Print('MIDI key 60 velocity: ' .. vel) -- Output the velocity of MIDI key 60 if it is being pressed
 ```
 
+## Scene
 
+Functions that get scene info
+
+### Scene.GetName() -> string
+
+Gets the current scene's name
+
+#### Usage
+
+```lua
+curr_scene = Scene.GetName() -- Gets the current scene's name
+```
+
+### Scene.Switch(string: scene_name)
+
+Switches the scene to the given scene `scene_name` (pulls from the file `scene_name.scene`)
+
+This unloads all actors and their components (**does NOT call OnDestroy**), and loads the actors and components of the new scene
+
+#### Usage
+
+```lua
+Scene.Switch('scene2') -- Switches to the scene "scene2.scene"
+Scene.Switch(Scene.GetName()) -- Equivalent to reloading the current scene
+```
+
+## Text
+
+Functions to render text on screen
+
+You must have a font file for text rendering to work
+
+### Text.Draw(string: text, int: x, int: y, string: font_file, int: font_size, int: r, int: g, int: b, int: a)
+
+Draws text to the screen with the following parameters:
+
+- Text string to render
+- X position (window coordinates)
+- Y position (window coordinates)
+- Font to use (`font_file.ttf`)
+- Font size
+- Red color parameter (0-255)
+- Green color parameter (0-255)
+- Blue color parameter (0-255)
+- Alpha parameter (0-255)
+
+#### Usage
+
+```lua
+-- Draws the text "Hello!!!" (without quotations) to the screen
+-- at the top left corner of the screen (0,0), using font "font.ttf",
+-- at size 16, colored red, at full opacity
+Text.Draw("Hello!!!", 0, 0, "font", 16, 255, 0, 0, 255)
+```
