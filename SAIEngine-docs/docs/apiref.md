@@ -449,6 +449,8 @@ Image.DrawPixel(100, 100, 255, 255, 255, 255) -- Draw a white pixel at window co
 
 Functions that manage input from the keyboard, mouse, or MIDI controller
 
+For a guide on which keys, mouse buttons, and MIDI keys can be queried, see the Input Guide page
+
 ### Input.GetKeyDown(string: keycode) -> bool
 
 Returns true if the key `keycode` was pressed down this frame
@@ -466,7 +468,7 @@ if Input.GetKeyDown('space') then Console.Print('Space just pressed!') end
 
 Returns true if the key `keycode` is currently being pressed
 
-This function returns true every frame the key is held **after** the frame it was pressed
+This function returns true every frame the key is held **after** the frame it was first pressed
 
 #### Usage
 
@@ -484,8 +486,158 @@ This function returns true only on the frame it's released, and doesn't return t
 #### Usage
 
 ```lua
--- The message gets printed every frame W is held down (except the frame it was first pressed)
+-- The message only gets printed on the first frame W is released
 if Input.GetKeyUp('w') then Console.Print('W just released!') end
 ```
 
+### Input.GetMouseButtonDown(int: mouse_btn) -> bool
+
+Returns true if the mouse button `mouse_btn` was pressed down this frame
+
+This function returns true only on the frame it's pressed, and doesn't return true again until the button is released and pressed again
+
+#### Usage
+
+```lua
+-- The message only gets printed on the first frame the left mouse button is pressed down
+if Input.GetMouseButtonDown(0) then Console.Print('Left click just pressed!') end
+```
+
+### Input.GetMouseButton(int: mouse_btn) -> bool
+
+Returns true if the mouse button `mouse_btn` is currently being pressed
+
+This function returns true every frame the mouse button is held **after** the frame it was first pressed
+
+#### Usage
+
+```lua
+-- The message gets printed every frame the left mouse button is held down (except the frame it was first pressed)
+if Input.GetMouseButton(0) then Console.Print('Left click is held down!') end
+```
+
+### Input.GetMouseButtonUp(int: mouse_btn) -> bool
+
+Returns true if the mouse button `mouse_btn` has just been released
+
+This function returns true only on the frame it's released, and doesn't return true again until the mouse button is pressed and released again
+
+#### Usage
+
+```lua
+-- The message only gets printed the first frame left click is released
+if Input.GetMouseButtonUp(0) then Console.Print('Left click just released!') end
+```
+
 ### Input.GetMousePosition() -> vec2
+
+Returns a vector of the current mouse position in window coordinates
+
+#### Usage
+
+```lua
+mouse_pos = Input.GetMousePosition() -- Gets the vec2
+mouse_x = mouse_pos.x -- Mouse's X pos
+mouse_y = mouse_pos.y -- Mouse's Y pos
+```
+
+### Input.GetMouseScroll() -> float
+
+Gets the amount the mouse wheel has been scrolled this frame
+
+Delta is positive away from you and negative towards you
+
+#### Usage
+
+```lua
+mouse_scroll = Input.GetMouseScroll() -- Gets the amount scrolled
+if mouse_scroll ~= 0 then Console.Print("Mouse scrolled: " .. mouse_scroll) end -- Prints the amount scrolled only if it's been scrolled
+```
+
+### Input.HideCursor()
+
+Hides the mouse cursor while it's over the window
+
+#### Usage
+
+```lua
+Input.HideCursor() -- Hides the cursor
+```
+
+### Input.ShowCursor()
+
+Shows the mouse cursor (e.g. after it's been hidden)
+
+#### Usage
+
+```lua
+Input.ShowCursor() -- Shows the cursor
+```
+
+### Input.EnableMIDIControl()
+
+Enables a plugged-in MIDI controller to be used as input for your project
+
+This only needs to be called once for the entire program (e.g. in a component's OnStart)
+
+#### Usage
+
+```lua
+key = Input.GetMIDI(60) -- Returns an error
+Input.EnableMIDIControl() -- Enables MIDI controller support
+key = Input.GetMIDI(60) -- Works!
+```
+
+### Input.GetMIDIDown(int: midi_key) -> bool
+
+Returns true if the MIDI key `midi_key` was pressed down this frame
+
+This function returns true only on the frame it's pressed, and doesn't return true again until the key is released and pressed again
+
+#### Usage
+
+```lua
+-- The message only gets printed on the first frame MIDI key 60 is pressed down
+if Input.GetMIDIDown(60) then Console.Print('MIDI key 60 just pressed!') end
+```
+
+### Input.GetMIDI(int: midi_key) -> bool
+
+Returns true if the MIDI key `midi_key` is currently being pressed
+
+This function returns true every frame the key is held **after** the frame it was first pressed
+
+#### Usage
+
+```lua
+-- The message gets printed every frame MIDI key 60 is held down (except the frame it was first pressed)
+if Input.GetMIDI(60) then Console.Print('MIDI key 60 is held down!') end
+```
+
+### Input.GetMIDIUp(int: midi_key) -> bool
+
+Returns true if the MIDI key `midi_key` has just been released
+
+This function returns true only on the frame it's released, and doesn't return true again until the key is pressed and released again
+
+#### Usage
+
+```lua
+-- The message only gets printed the first frame MIDI key 60 is released
+if Input.GetMIDIUp(0) then Console.Print('MIDI key 60 just released!') end
+```
+
+### Input.GetMIDIVelocity(int: midi_key) -> int
+
+Gets the velocity of the given MIDI key `midi_key` on the current frame
+
+If `midi_key` isn't an actual MIDI key, returns -1
+
+#### Usage
+
+```lua
+vel = Input.GetMIDIVelocity(60) -- Get velocity of MIDI key 60
+if vel > 0 then Console.Print('MIDI key 60 velocity: ' .. vel) -- Output the velocity of MIDI key 60 if it is being pressed
+```
+
+
