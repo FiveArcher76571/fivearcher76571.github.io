@@ -90,11 +90,11 @@ A data type to store two floats (i.e. a geometric vector)
 
 This simply exposes the `x` and `y` properties of the underlying `glm::vec2` data type
 
-### vec2.x (property)
+### vec2.x (property) -> float
 
 The X coordinate of the vector (first of two numbers)
 
-### vec2.y (property)
+### vec2.y (property) -> float
 
 The Y coordinate of the vector (second of two numbers)
 
@@ -104,11 +104,11 @@ A data type to store two integers (i.e. a geometric vector)
 
 This simply exposes the `x` and `y` properties of the underlying `glm::ivec2` data type
 
-### ivec2.x (property)
+### ivec2.x (property) -> int
 
 The X coordinate of the vector (first of two numbers)
 
-### ivec2.y (property)
+### ivec2.y (property) -> int
 
 The Y coordinate of the vector (second of two numbers)
 
@@ -118,7 +118,7 @@ A data type for actors, allowing access to actor information and stored componen
 
 **Note**: these functions are used on actor objects, and as such you need to **use a colon** to refer to them.
 
-### actor:GetName()
+### actor:GetName() -> string
 
 Gets the actor's name
 
@@ -129,7 +129,7 @@ this_actor = Actor.Find("actor_name") -- Gets the actor and assigns it to this_a
 actor_name = this_actor:GetName() -- Note the colon
 ```
 
-### actor:GetID()
+### actor:GetID() -> int
 
 Gets the actor's ID
 
@@ -140,7 +140,7 @@ this_actor = Actor.Find("actor_name") -- Gets the actor and assigns it to this_a
 actor_id = this_actor:GetID() -- Note the colon
 ```
 
-### actor:AddComponent(string: type)
+### actor:AddComponent(string: type) -> ComponentRef
 
 Add the given component type to the actor
 
@@ -151,7 +151,7 @@ this_actor = Actor.Find("actor_name") -- Gets the actor and assigns it to this_a
 this_actor:AddComponent("type") -- Note the colon
 ```
 
-### actor:GetComponent(string: type)
+### actor:GetComponent(string: type) -> ComponentRef
 
 Gets a reference to an actor's component given its type. If there are more than one of this component on the actor, it returns the first one
 
@@ -162,7 +162,7 @@ this_actor = Actor.Find("actor_name") -- Gets the actor and assigns it to this_a
 component = this_actor:GetComponent("type") -- Note the colon
 ```
 
-### actor:GetComponents(string: type)
+### actor:GetComponents(string: type) -> table[ComponentRef]
 
 Gets references to an actor's component(s) given its type and returns a table of them (note the plural!)
 
@@ -173,7 +173,7 @@ this_actor = Actor.Find("actor_name") -- Gets the actor and assigns it to this_a
 component_table = this_actor:GetComponents("type") -- Note the colon
 ```
 
-### actor:GetComponentByKey(string: key)
+### actor:GetComponentByKey(string: key) -> ComponentRef
 
 Gets a reference to an actor's component given its key
 
@@ -200,7 +200,7 @@ this_actor:RemoveComponent(component_to_remove) -- Note the colon
 
 Functions that create, modify, and destroy actors themselves
 
-### Actor.Instantiate(string: template_name)
+### Actor.Instantiate(string: template_name) -> ActorRef
 
 Create a new actor; this clones the given template actor `template_name`
 
@@ -210,7 +210,7 @@ Create a new actor; this clones the given template actor `template_name`
 new_actor = Actor.Instantiate("template")
 ```
 
-### Actor.Find(string: actor_name)
+### Actor.Find(string: actor_name) -> ActorRef
 
 Gets a reference to an actor in the scene given its name
 
@@ -222,7 +222,7 @@ If there are multiple actors with the given name, this will return the first one
 found_actor = Actor.Find("actor_name")
 ```
 
-### Actor.FindAll(string: actor_name)
+### Actor.FindAll(string: actor_name) -> table[ActorRef]
 
 Gets references to all actors in the scene with the given name and returns a table of them
 
@@ -247,7 +247,7 @@ Actor.Destroy(actor_to_destroy)
 
 Functions that track application-level information
 
-### Application.GetFrame()
+### Application.GetFrame() -> int
 
 Get the current frame number as an integer
 
@@ -293,7 +293,7 @@ Application.Sleep(5000) -- Pauses for 5,000 milliseconds (5 seconds)
 
 Functions that check and manipulate camera parameters
 
-### Camera.GetPosition()
+### Camera.GetPosition() -> vec2
 
 Gets the camera's position in world coordinates as a vec2 object
 
@@ -315,7 +315,7 @@ Sets the camera's position and whether to ease it there or not
 Camera.SetPosition(0, 0, true) -- Smoothly shift the camera to world position (0,0)
 ```
 
-### Camera.GetZoom()
+### Camera.GetZoom() -> float
 
 Gets the camera's current zoom factor
 
@@ -448,3 +448,44 @@ Image.DrawPixel(100, 100, 255, 255, 255, 255) -- Draw a white pixel at window co
 ## Input
 
 Functions that manage input from the keyboard, mouse, or MIDI controller
+
+### Input.GetKeyDown(string: keycode) -> bool
+
+Returns true if the key `keycode` was pressed down this frame
+
+This function returns true only on the frame it's pressed, and doesn't return true again until the key is released and pressed again
+
+#### Usage
+
+```lua
+-- The message only gets printed on the first frame the space key is pressed down
+if Input.GetKeyDown('space') then Console.Print('Space just pressed!') end
+```
+
+### Input.GetKey(string: keycode) -> bool
+
+Returns true if the key `keycode` is currently being pressed
+
+This function returns true every frame the key is held **after** the frame it was pressed
+
+#### Usage
+
+```lua
+-- The message gets printed every frame W is held down (except the frame it was first pressed)
+if Input.GetKeyPressed('w') then Console.Print('W is held down!') end
+```
+
+### Input.GetKeyUp(string: keycode) -> bool
+
+Returns true if the key `keycode` has just been released
+
+This function returns true only on the frame it's released, and doesn't return true again until the key is pressed and released again
+
+#### Usage
+
+```lua
+-- The message gets printed every frame W is held down (except the frame it was first pressed)
+if Input.GetKeyUp('w') then Console.Print('W just released!') end
+```
+
+### Input.GetMousePosition() -> vec2
