@@ -642,6 +642,119 @@ vel = Input.GetMIDIVelocity(60) -- Get velocity of MIDI key 60
 if vel > 0 then Console.Print('MIDI key 60 velocity: ' .. vel) -- Output the velocity of MIDI key 60 if it is being pressed
 ```
 
+## RAudio
+
+Functions that manage rendered audio (e.g. MP3 and WAV files)
+
+### RAudio.Play(int: channel, string: trackname, bool: loop)
+
+Plays the audio file `trackname` on audio channel `channel`
+
+If `loop` is set to true, loops indefinitely
+
+#### Usage
+
+```lua
+RAudio.Play(0, "song", true) -- Play "song.wav/.mp3" on channel 0, looping forever
+```
+
+### RAudio.Pause(int: channel)
+
+Pause the audio channel `channel`
+
+#### Usage
+
+```lua
+RAudio.Play(0, "song", true) -- Play "song.wav/.mp3" on channel 0, looping forever
+Raudio.Pause(0) -- Pause channel 0
+-- (if you actually ran this code unmodified you wouldn't hear much at all)
+```
+
+### RAudio.PauseAll()
+
+Pause all tracks currently playing
+
+#### Usage
+
+```lua
+RAudio.PauseAll() -- Pauses all tracks playing
+```
+
+### RAudio.Resume(int: channel)
+
+Resume the paused audio channel `channel`
+
+#### Usage
+
+```lua
+RAudio.Pause(0) -- Pause channel 0
+RAudio.Resume(0) -- Resume channel 0
+```
+
+### RAudio.ResumeAll()
+
+Resume all paused audio channels
+
+#### Usage
+
+```lua
+RAudio.PauseAll() -- Pauses all channels
+RAudio.ResumeAll() -- Resumes all channels
+```
+
+### RAudio.SetGain(int: channel, int: gain)
+
+Set the audio channel's gain
+
+#### Usage
+
+```lua
+RAudio.SetGain(0, 2) -- Set channel 0's gain to 2
+```
+
+### RAudio.SetLoopPoints(int: channel, int: start_pos, int: end_pos)
+
+Set loop points in milliseconds for the given audio channel, to be called before `RAudio.Play()`
+
+The track will start at 0 ms when `RAudio.Play()` is called, and once it reaches `end_pos` the track will skip back to `start_pos`
+
+#### Usage
+
+```lua
+RAudio.SetLoopPoints(0, 1000, 5000) -- Set channel 0's loop points to start at 1s and end at 5s
+RAudio.Play(0, "track", true) -- Play "track.wav/.mp3" at channel 0 (using the above loop points)
+```
+
+### RAudio.ResetLoopPoints(int: channel)
+
+Reset the loop points for `channel` to the actual start and end of the assigned audio file
+
+#### Usage
+
+```lua
+RAudio.SetLoopPoints(0, 1000, 5000) -- Set channel 0's loop points to start at 1s and end at 5s
+RAudio.Play(0, "track", true) -- Play "track.wav/.mp3" at channel 0 (using the above loop points)
+RAudio.ResetLoopPoints(0) -- Reset the loop points that we set above
+-- (if you were to actually run the above code, you wouldn't end up hearing the loop points at all)
+```
+
+### RAudio.GetBPM(int: channel) -> int
+
+Get the BPM of the given channel
+
+If you haven't set a BPM for the track, this will return -1
+
+#### Usage
+
+```lua
+RAudio.SetBPM(0, 120) -- Sets channel 0's BPM to 120
+RAudio.GetBPM(0) -- Returns 120
+```
+
+### RAudio.SetBPM(int: channel, int: BPM)
+
+
+
 ## Scene
 
 Functions that get scene info

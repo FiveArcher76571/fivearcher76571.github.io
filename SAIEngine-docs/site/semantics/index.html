@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Semantics - SAIEngine Documentation</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">SAIEngine Documentation</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="./" class="nav-link active" aria-current="page">Semantics</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../apiref/" class="nav-link">API Reference</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href=".." class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../apiref/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-light">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#saiengine-semantics" class="nav-link">SAIEngine Semantics</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#scenes" class="nav-link">Scenes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#actors" class="nav-link">Actors</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#components" class="nav-link">Components</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#actor-templates" class="nav-link">Actor Templates</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#lifecycle-functions" class="nav-link">Lifecycle Functions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#api-functions" class="nav-link">API Functions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#file-structure" class="nav-link">File Structure</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#the-gauntlet-demo-project" class="nav-link">The Gauntlet (Demo Project)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#conclusion" class="nav-link">Conclusion</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="saiengine-semantics">SAIEngine Semantics</h1>
+<p>To understand how to actually make something in SAIEngine, you'll need to learn a few important concepts. Luckily, if you've ever worked with engines like Godot, Unreal, or especially Unity (or anything similar), you might already be familiar with some of these!</p>
+<h2 id="scenes">Scenes</h2>
+<p>Think of these as the "where" in your project. A scene holds all the <em>things</em> in your project, and switching to a different scene will switch out all those things.</p>
+<p><strong>Scene files are simply JSON tables</strong>, like below:</p>
+<pre><code class="language-json">{
+    &quot;actors&quot;: [ // A scene is just a list of actors!
+        {
+            &quot;name&quot;: &quot;title_text&quot;, // Name your actors, get creative!
+            &quot;components&quot;: { // Actors have components, see below for what these are
+                &quot;1&quot;: {
+                    &quot;type&quot;: &quot;Transform&quot;,
+                    &quot;x&quot;: 500,
+                    &quot;y&quot;: 200
+                },
+                &quot;2&quot;: {
+                    &quot;type&quot;: &quot;DrawText&quot;,
+                    &quot;message&quot;: &quot;THE GAUNTLET&quot;
+                },
+                &quot;3&quot;: { // You can have as many or as few components as you wanna!
+                    &quot;type&quot;: &quot;TitleInput&quot;
+                }
+            }
+        }
+    ] // Well-formed JSON is the best kind of JSON, don't forget your commas (I know I have)
+}
+</code></pre>
+<p>You may have already pieced it together by now, but those <em>things</em> are known in the engine as <strong>actors</strong>, and a scene can have as many or as few of these as you want. You can even have 0 actors in a scene (but uhh I don't imagine that'd be too useful).</p>
+<h2 id="actors">Actors</h2>
+<p>These are the "what" in your project. Actors live in your scenes and are meant to do anything you need. You list out all the actors you need in your scene. That's why a scene file is simply a list of actors!</p>
+<p>As for what these actors actually do...</p>
+<h2 id="components">Components</h2>
+<p>These are the "how" of your actors, as in how your actors do things. You may have a bunch of actors, but if they don't have a <em>script</em> they're not gonna be very productive, right? So, giving them a component allows them to actually do things. You can assign as many or as few components to actors, and multiple actors can have different instances of the same component (so no need to copy code or anything). <strong>Components are Lua scripts</strong>, which means that if you can do something in Lua, you can do it in SAIEngine.</p>
+<p>Here's an example of a Lua component:</p>
+<pre><code class="language-lua">DrawText = { -- Components are simply Lua tables! (can you see a theme here yet?)
+    message = &quot;???&quot;, -- This is a variable that your component can use
+
+    OnStart = function(self) -- This is a function your component will run
+        self.transform = self.actor:GetComponent(&quot;Transform&quot;)
+    end,
+
+    OnUpdate = function(self) -- This and the above function are &quot;lifecycle functions&quot;, more on those later
+        Text.Draw(self.message, self.transform.x, self.transform.y, &quot;NotoSans-Regular&quot;, 70, 255, 255, 255, 255)
+        -- See how the &quot;message&quot; variable is accessed in the above line?
+        ConsolePrint()
+    end,
+
+    ConsolePrint = function() -- This is a function you can make and run as you need
+        Console.Log(&quot;Hi!&quot;) -- An example of an API function you can call!
+    end
+}
+</code></pre>
+<p>As you can see, a SAIEngine component takes the form of a Lua table. That table can hold variables and functions, so they're very versatile! Now, that <em>does</em> mean that you can put literally all of your functionality into a single component (a GOD COMPONENT, if you will), but uhhh that gets pretty messy pretty fast, so I don't really recommend it.</p>
+<h2 id="actor-templates">Actor Templates</h2>
+<p>You might find it useful to make copies of actors with certain components. For example, what if you want to make a bunch of enemies that all share the same health and weapons? For these situations, you'll want to use <strong>actor templates</strong>!</p>
+<p>Here's a .template file example (these are also JSON files!):</p>
+<pre><code class="language-json">{
+    &quot;name&quot;: &quot;enemy&quot;, // The name of the template
+    &quot;components&quot;: { // Just like scene files, you can define components for your templates
+        &quot;1&quot;: {
+            &quot;type&quot;: &quot;Transform&quot;
+        },
+        &quot;2&quot;: {
+            &quot;type&quot;: &quot;ImageRenderer&quot;,
+            &quot;image&quot;: &quot;enemy&quot;
+        },
+        &quot;3&quot;: {
+            &quot;type&quot;: &quot;EnemyMovement&quot;,
+            &quot;speed&quot;: 1
+        },
+        &quot;4&quot;: {
+            &quot;type&quot;: &quot;GameOverOnCollision&quot;
+        }
+    }
+}
+</code></pre>
+<p>By defining templates here in each of their files, you can instantiate them in your components as you please using:
+<code>Actor.Instantiate(&lt;template&gt;)</code></p>
+<p>So, you now have the where, what, and how. That's most of what you need to make a fully functional thing! Make actors, assign components to make them do things, and put them all in respective scenes, and you're good to go!</p>
+<p>Granted, there's still some more to cover, but if you understand this Scene-Actor-Component structure, you'll get the rest just fine.</p>
+<h2 id="lifecycle-functions">Lifecycle Functions</h2>
+<p>Actors have lifecycles. Whether that lifecycle lasts as short as a button press or as long as the program is open is, of course, up to you, but in either case you may want to have those actors do different things throughout their lives. For example, what if you want a counter to go up every frame? Or maybe you want the scene to change once you kill a certain enemy? You'll find the below lifecycle functions helpful for stuff like this!</p>
+<ul>
+<li>OnStart - <em>called on the frame this actor is instantiated</em></li>
+<li>OnUpdate - <em>called every frame after (but not including) instantiation</em></li>
+<li>OnLateUpdate - <em>called every frame after every other actor's OnUpdate function is completed</em></li>
+<li>OnDestroy - <em>called on the frame this actor is destroyed</em></li>
+</ul>
+<p>If you include definitions to these functions in your components (mind the casing!), SAIEngine will execute the contents of these functions as the program runs.</p>
+<h2 id="api-functions">API Functions</h2>
+<p>Now, you can only get so far with what we've covered so far, and bare-bones Lua might not be enough for a lot of things. What about something as basic as showing something on screen? Maybe playing some audio? How about user input? That's where API functions come in! </p>
+<p>These are functions you can call from your components that can help you do some more complex things. Check out the following example:</p>
+<pre><code class="language-lua">PlayerMovement = {
+
+    speed = 0.1,
+
+    OnStart = function(self)
+        self.transform = self.actor:GetComponent(&quot;Transform&quot;)
+        RAudio.Play(&quot;bgm_track&quot;) -- RAudio - rendered audio playback (like WAV and MP3 files)
+    end,
+
+    OnUpdate = function(self)
+
+        -- Below: Input - dealing with user input from the keyboard, mouse and more!
+        if Input.GetKey(&quot;w&quot;) then self.transform.y = self.transform.y - self.speed end
+        if Input.GetKey(&quot;s&quot;) then self.transform.y = self.transform.y + self.speed end
+        if Input.GetKey(&quot;a&quot;) then self.transform.x = self.transform.x - self.speed end
+        if Input.GetKey(&quot;d&quot;) then self.transform.x = self.transform.x + self.speed end
+
+        -- Below: Window - dealing with getting/setting the program's window parameters (size, dimensions, etc.)        
+        if self.transform.x &lt; 0 then self.transform.x = 0 end
+        if self.transform.x + 100 &gt; Window.GetWidth() then self.transform.x = Window.GetWidth() - 100 end
+        if self.transform.y &lt; 0 then self.transform.y = 0 end
+        if self.transform.y + 100 &gt; Window.GetHeight() then self.transform.y = Window.GetHeight() - 100 end
+
+        if Input.GetKey(&quot;escape&quot;) then Application.Quit() end -- Application - the software itself (quitting, frame counts, etc.)
+
+    end
+}
+</code></pre>
+<p>You'll find that there are a bunch more API functions at your disposal! To see them all, see the API Reference section of these docs.</p>
+<h2 id="file-structure">File Structure</h2>
+<p>So now you know most of the actual program stuff in SAIEngine. Now, where do these all go?</p>
+<p>Everything that you create to run in SAIEngine lives in a folder titled <code>resources</code>. This folder can contain anything from assets (like images, audio files, etc.) to Lua components and everything in between. Basically, if it's in your <code>resources</code> folder, it'll be avalable for you to use from your code!</p>
+<p>This is an example file structure:</p>
+<pre><code class="language-tree">SAIEngine &lt;engine executable&gt;
+resources/
+├── actor_templates/
+│   └── &lt;Actor .template files here&gt;
+├── audio/
+│   └── &lt;Audio files here&gt;
+├── component_types/
+│   └── &lt;Lua (.lua) components here&gt;
+├── fonts/
+│   └── &lt;Fonts (.ttf) here&gt;
+├── game.config &lt;program configuration&gt;
+├── images/
+│   └── &lt;Image files go here&gt;
+├── rendering.config &lt;window-related configuration&gt;
+└── scenes/
+    └── &lt;Scene (.scene) files here&gt;
+</code></pre>
+<p>Notice how the <code>resources</code> directory is right next to the engine's executable. Be sure that's the case; if it's anywhere else it won't be read!</p>
+<h2 id="the-gauntlet-demo-project"><a href="https://fivearcher76571.github.io/resources/The.Gauntlet.SAIEngine.Demo.zip">The Gauntlet (Demo Project)</a></h2>
+<p>If you're interested in seeing a demo of all these concepts in action, I just so happen to have one for you! It's a game I made as part of my final submission for this engine. Feel free to look through the files and use them as you see fit (all the assets are my own, and I give you permission to mess with them).</p>
+<p>You can find the files for the game by clicking the link in the header. Have fun!</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>And those are the basics of understanding SAIEngine! I'm sure you LOVED reading this huge block of text. But if you need a TL;DR, I highly recommend <strong>just messing around with it!</strong> Actually making something using the engine is a great way to learn the ins-and-outs of how it works (and that's good advice for learning just about anything new). Check back here, in the demo project, and in the API Reference when you need a refresher, and you should be good to go!</p>
+<p>Most importantly, hope you have fun! :D</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

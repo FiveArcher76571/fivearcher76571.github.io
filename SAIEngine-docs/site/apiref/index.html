@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>API Reference - SAIEngine Documentation</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">SAIEngine Documentation</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../semantics/" class="nav-link">Semantics</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="./" class="nav-link active" aria-current="page">API Reference</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../semantics/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-light">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#api-reference" class="nav-link">API Reference</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#lifecycle-functions" class="nav-link">Lifecycle Functions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#vec2-object-type" class="nav-link">vec2 (object type)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#ivec2-object-type" class="nav-link">ivec2 (object type)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#actor-object-type" class="nav-link">Actor (object type)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#actor-namespace" class="nav-link">Actor (namespace)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#application" class="nav-link">Application</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#camera" class="nav-link">Camera</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#console" class="nav-link">Console</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#image" class="nav-link">Image</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#input" class="nav-link">Input</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#raudio" class="nav-link">RAudio</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#scene" class="nav-link">Scene</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#text" class="nav-link">Text</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#window" class="nav-link">Window</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="api-reference">API Reference</h1>
+<h6 id="last-updated-august-26th-2026">Last Updated: August 26th, 2026</h6>
+<p>This is a page of the full SAIEngine API, including the various functions available to you as a developer.</p>
+<p>This page is organized by class or namespace (sorted alphabetically, unless it makes sense to not do that), with the available member functions of said class or namespace listed under each.</p>
+<p>Each function will include a return type if the function is non-void , as well as a code snippet describing its usage</p>
+<h2 id="lifecycle-functions">Lifecycle Functions</h2>
+<p>Functions to be defined in components that are called as the program progresses</p>
+<p>Listed by order of their execution (TL;DR: OnStart -&gt; OnUpdate -&gt; OnLateUpdate -&gt; OnDestroy)</p>
+<h3 id="onstart">OnStart</h3>
+<p>Called on component instantiation (once). If the component is defined in the initial scene, this is frame 0 (before the program begins)</p>
+<h4 id="usage">Usage</h4>
+<pre><code class="language-lua">Component = {
+    OnStart = function(self)
+
+        -- All code here is executed once, on the frame this component is instantiated
+
+    end
+}
+</code></pre>
+<h3 id="onupdate">OnUpdate</h3>
+<p>Called every frame after (and not including) component instantiation until the component is destroyed</p>
+<h4 id="usage_1">Usage</h4>
+<pre><code class="language-lua">Component = {
+    OnUpdate = function(self)
+
+        -- All code here is executed every frame
+
+    end
+}
+</code></pre>
+<h3 id="onlateupdate">OnLateUpdate</h3>
+<p>Called every frame, but after OnUpdate is called for every other component loaded in the scene</p>
+<h4 id="usage_2">Usage</h4>
+<pre><code class="language-lua">Component = {
+    OnUpdate = function(self)
+
+        -- All code here is executed every frame
+
+    end,
+
+    OnLateUpdate = function(self)
+
+        -- All code here is executed every frame after OnUpdate is finished
+        -- For example, if this is the only component in the scene...
+        -- This code will execute after the above code in OnUpdate is executed
+
+    end
+}
+</code></pre>
+<h3 id="ondestroy">OnDestroy</h3>
+<p>Called on component destruction (once)</p>
+<h4 id="usage_3">Usage</h4>
+<pre><code class="language-lua">Component = {
+    OnDestroy = function(self)
+
+        -- All code here is executed on the frame this component is destroyed
+
+    end
+}
+</code></pre>
+<h2 id="vec2-object-type">vec2 (object type)</h2>
+<p>A data type to store two floats (i.e. a geometric vector)</p>
+<p>This simply exposes the <code>x</code> and <code>y</code> properties of the underlying <code>glm::vec2</code> data type</p>
+<h3 id="vec2x-property-float">vec2.x (property) -&gt; float</h3>
+<p>The X coordinate of the vector (first of two numbers)</p>
+<h3 id="vec2y-property-float">vec2.y (property) -&gt; float</h3>
+<p>The Y coordinate of the vector (second of two numbers)</p>
+<h2 id="ivec2-object-type">ivec2 (object type)</h2>
+<p>A data type to store two integers (i.e. a geometric vector)</p>
+<p>This simply exposes the <code>x</code> and <code>y</code> properties of the underlying <code>glm::ivec2</code> data type</p>
+<h3 id="ivec2x-property-int">ivec2.x (property) -&gt; int</h3>
+<p>The X coordinate of the vector (first of two numbers)</p>
+<h3 id="ivec2y-property-int">ivec2.y (property) -&gt; int</h3>
+<p>The Y coordinate of the vector (second of two numbers)</p>
+<h2 id="actor-object-type">Actor (object type)</h2>
+<p>A data type for actors, allowing access to actor information and stored component details</p>
+<p><strong>Note</strong>: these functions are used on actor objects, and as such you need to <strong>use a colon</strong> to refer to them.</p>
+<h3 id="actorgetname-string">actor:GetName() -&gt; string</h3>
+<p>Gets the actor's name</p>
+<h4 id="usage_4">Usage</h4>
+<pre><code class="language-lua">this_actor = Actor.Find(&quot;actor_name&quot;) -- Gets the actor and assigns it to this_actor
+actor_name = this_actor:GetName() -- Note the colon
+</code></pre>
+<h3 id="actorgetid-int">actor:GetID() -&gt; int</h3>
+<p>Gets the actor's ID</p>
+<h4 id="usage_5">Usage</h4>
+<pre><code class="language-lua">this_actor = Actor.Find(&quot;actor_name&quot;) -- Gets the actor and assigns it to this_actor
+actor_id = this_actor:GetID() -- Note the colon
+</code></pre>
+<h3 id="actoraddcomponentstring-type-componentref">actor:AddComponent(string: type) -&gt; ComponentRef</h3>
+<p>Add the given component type to the actor</p>
+<h4 id="usage_6">Usage</h4>
+<pre><code class="language-lua">this_actor = Actor.Find(&quot;actor_name&quot;) -- Gets the actor and assigns it to this_actor
+this_actor:AddComponent(&quot;type&quot;) -- Note the colon
+</code></pre>
+<h3 id="actorgetcomponentstring-type-componentref">actor:GetComponent(string: type) -&gt; ComponentRef</h3>
+<p>Gets a reference to an actor's component given its type. If there are more than one of this component on the actor, it returns the first one</p>
+<h4 id="usage_7">Usage</h4>
+<pre><code class="language-lua">this_actor = Actor.Find(&quot;actor_name&quot;) -- Gets the actor and assigns it to this_actor
+component = this_actor:GetComponent(&quot;type&quot;) -- Note the colon
+</code></pre>
+<h3 id="actorgetcomponentsstring-type-tablecomponentref">actor:GetComponents(string: type) -&gt; table[ComponentRef]</h3>
+<p>Gets references to an actor's component(s) given its type and returns a table of them (note the plural!)</p>
+<h4 id="usage_8">Usage</h4>
+<pre><code class="language-lua">this_actor = Actor.Find(&quot;actor_name&quot;) -- Gets the actor and assigns it to this_actor
+component_table = this_actor:GetComponents(&quot;type&quot;) -- Note the colon
+</code></pre>
+<h3 id="actorgetcomponentbykeystring-key-componentref">actor:GetComponentByKey(string: key) -&gt; ComponentRef</h3>
+<p>Gets a reference to an actor's component given its key</p>
+<h4 id="usage_9">Usage</h4>
+<pre><code class="language-lua">this_actor = Actor.Find(&quot;actor_name&quot;) -- Gets the actor and assigns it to this_actor
+component = this_actor:GetComponentByKey(&quot;key&quot;) -- Note the colon
+</code></pre>
+<h3 id="actorremovecomponentcomponentref-component">actor:RemoveComponent(ComponentRef: component)</h3>
+<p>Remove the given component from the actor</p>
+<h4 id="usage_10">Usage</h4>
+<pre><code class="language-lua">this_actor = Actor.Find(&quot;actor_name&quot;) -- Gets the actor and assigns it to this_actor
+component_to_remove = this_actor:GetComponent(&quot;ComponentType&quot;)
+this_actor:RemoveComponent(component_to_remove) -- Note the colon
+</code></pre>
+<h2 id="actor-namespace">Actor (namespace)</h2>
+<p>Functions that create, modify, and destroy actors themselves</p>
+<h3 id="actorinstantiatestring-template_name-actorref">Actor.Instantiate(string: template_name) -&gt; ActorRef</h3>
+<p>Create a new actor; this clones the given template actor <code>template_name</code></p>
+<h4 id="usage_11">Usage</h4>
+<pre><code class="language-lua">new_actor = Actor.Instantiate(&quot;template&quot;)
+</code></pre>
+<h3 id="actorfindstring-actor_name-actorref">Actor.Find(string: actor_name) -&gt; ActorRef</h3>
+<p>Gets a reference to an actor in the scene given its name</p>
+<p>If there are multiple actors with the given name, this will return the first one</p>
+<h4 id="usage_12">Usage</h4>
+<pre><code class="language-lua">found_actor = Actor.Find(&quot;actor_name&quot;)
+</code></pre>
+<h3 id="actorfindallstring-actor_name-tableactorref">Actor.FindAll(string: actor_name) -&gt; table[ActorRef]</h3>
+<p>Gets references to all actors in the scene with the given name and returns a table of them</p>
+<h4 id="usage_13">Usage</h4>
+<pre><code class="language-lua">found_actors = Actor.FindAll(&quot;actor_name&quot;)
+</code></pre>
+<h3 id="actordestroyactorref-actor">Actor.Destroy(ActorRef: actor)</h3>
+<p>Destroys the given actor; this also deactivates all the given actor's components (equivalent to calling <code>OnDestroy</code> on all of its components)</p>
+<h4 id="usage_14">Usage</h4>
+<pre><code class="language-lua">actor_to_destroy = Actor.Find(&quot;actor_name&quot;) -- Gets the actor and assigns it to actor_to_destroy
+Actor.Destroy(actor_to_destroy)
+</code></pre>
+<h2 id="application">Application</h2>
+<p>Functions that track application-level information</p>
+<h3 id="applicationgetframe-int">Application.GetFrame() -&gt; int</h3>
+<p>Get the current frame number as an integer</p>
+<h4 id="usage_15">Usage</h4>
+<pre><code class="language-lua">current_frame = Application.GetFrame()
+</code></pre>
+<h3 id="applicationopenurlstring-url">Application.OpenURL(string: url)</h3>
+<p>Opens your computer's default browser to the given URL <code>url</code></p>
+<h4 id="usage_16">Usage</h4>
+<pre><code class="language-lua">Application.OpenURL(&quot;https://www.youtube.com/@ScottTheWoz&quot;) -- An important YouTube channel
+</code></pre>
+<h3 id="applicationquit">Application.Quit()</h3>
+<p>Quits the program safely on the frame it's called</p>
+<p>(on the C++ level, it simply calls <code>exit(0)</code>)</p>
+<h4 id="usage_17">Usage</h4>
+<pre><code class="language-lua">Application.Quit()
+</code></pre>
+<h3 id="applicationsleepint-ms">Application.Sleep(int: ms)</h3>
+<p>Pauses the application for <code>ms</code> milliseconds universally. Everything stops.</p>
+<h4 id="usage_18">Usage</h4>
+<pre><code class="language-lua">Application.Sleep(5000) -- Pauses for 5,000 milliseconds (5 seconds)
+</code></pre>
+<h2 id="camera">Camera</h2>
+<p>Functions that check and manipulate camera parameters</p>
+<h3 id="cameragetposition-vec2">Camera.GetPosition() -&gt; vec2</h3>
+<p>Gets the camera's position in world coordinates as a vec2 object</p>
+<h4 id="usage_19">Usage</h4>
+<pre><code class="language-lua">cam_pos = Camera.GetPosition() -- Camera's position as a vec2 object
+cam_x = cam_pos.x -- Gets camera's X position
+cam_y = cam_pos.y -- Gets camera's Y position
+</code></pre>
+<h3 id="camerasetpositionint-x-int-y-bool-easing">Camera.SetPosition(int: x, int: y, bool: easing)</h3>
+<p>Sets the camera's position and whether to ease it there or not</p>
+<h4 id="usage_20">Usage</h4>
+<pre><code class="language-lua">Camera.SetPosition(0, 0, true) -- Smoothly shift the camera to world position (0,0)
+</code></pre>
+<h3 id="cameragetzoom-float">Camera.GetZoom() -&gt; float</h3>
+<p>Gets the camera's current zoom factor</p>
+<h4 id="usage_21">Usage</h4>
+<pre><code class="language-lua">zoom_factor = Camera.GetZoom() -- Gets the zoom factor as a float
+</code></pre>
+<h3 id="camerasetzoomfloat-zoom">Camera.SetZoom(float: zoom)</h3>
+<p>Sets the camera's zoom factor</p>
+<h4 id="usage_22">Usage</h4>
+<pre><code class="language-lua">Camera.SetZoom(0.5) -- Zoom the camera out twice the default distance
+Camera.SetZoom(2.0) -- Zoom the camera in twice the default distance
+Camera.SetZoom(1.0) -- Zoom the camera to the default distance
+</code></pre>
+<h2 id="console">Console</h2>
+<p>Functions to output text to the console</p>
+<h3 id="consoleprintstring-message">Console.Print(string: message)</h3>
+<p>Print a standard message to the console followed by a newline (<code>std::endl</code> in C++)</p>
+<h4 id="usage_23">Usage</h4>
+<pre><code class="language-lua">Console.Print(&quot;Hello!!!&quot;) -- Outputs &quot;Hello!!!&quot; (without quotes) to the console
+</code></pre>
+<h3 id="consoleprinterrorstring-message">Console.PrintError(string: message)</h3>
+<p>Print an error message to the console (text colored red) followed by a newline (<code>std::endl</code> in C++)</p>
+<h4 id="usage_24">Usage</h4>
+<pre><code class="language-lua">Console.PrintError(&quot;Error: AAAA&quot;) -- Outputs &quot;Error: AAAA&quot; (without quotes) to the console
+</code></pre>
+<h2 id="image">Image</h2>
+<p>Functions to render/draw onto the screen (supports .PNG files for images)</p>
+<h3 id="imagedrawstring-image_filename-float-x-float-y">Image.Draw(string: image_filename, float: x, float: y)</h3>
+<p>Draw the given image file <code>image_filename.png</code> at world coordinates (x,y)</p>
+<h4 id="usage_25">Usage</h4>
+<pre><code class="language-lua">Image.Draw(&quot;sprite&quot;, 0, 0) -- Draws the image &quot;sprite.png&quot; at the center of the camera (0,0)
+</code></pre>
+<h3 id="imagedrawexstring-image_filename-float-pos_x-float-pos_y-int-rotation-float-scale_x-float-scale_y-float-pivot_x-float-pivot_y-int-r-int-g-int-b-int-a-int-sorting_order">Image.DrawEx(string: image_filename, float: pos_x, float: pos_y, int: rotation, float: scale_x, float: scale_y, float: pivot_x, float: pivot_y, int: r, int: g, int: b, int: a, int: sorting_order)</h3>
+<p>Draw the given image file <code>image_filename.png</code> to the world with extended parameters:</p>
+<ul>
+<li>X position (world coordinates)</li>
+<li>Y position (world coordinates)</li>
+<li>Rotation (degrees clockwise)</li>
+<li>X scale multiplier</li>
+<li>Y scale multiplier</li>
+<li>Pivot X position ("center" x-coordinate of image)</li>
+<li>Pivot Y position ("center" y-coordinate of image)</li>
+<li>Red color parameter (0-255)</li>
+<li>Green color parameter (0-255)</li>
+<li>Blue color parameter (0-255)</li>
+<li>Alpha parameter (0-255)</li>
+<li>Sorting order (relative to other rendered images)</li>
+</ul>
+<h4 id="usage_26">Usage</h4>
+<pre><code class="language-lua">-- Draws image &quot;sprite.png&quot; at world coordinate (0,0), rotated 90-degrees clockwise, twice as big,
+-- with its center at (50,50) in image pixels (this will fall at the given world coordinate),
+-- with blue colors removed, at full opacity, sorted at order 10
+-- (the sorting order only matters if you have other images rendered on screen at the same time)
+Image.DrawEx(&quot;sprite&quot;, 0, 0, 90, 2, 2, 50, 50, 255, 255, 0, 255, 10)
+</code></pre>
+<h3 id="imagedrawuistring-image_filename-int-x-int-y">Image.DrawUI(string: image_filename, int: x, int: y)</h3>
+<p>Draw the given image file <code>image_filename.png</code> at window coordinates (x,y)</p>
+<p>This draws images on top of all other screen elements (i.e. like UI elements)</p>
+<h4 id="usage_27">Usage</h4>
+<pre><code class="language-lua">Image.DrawUI(&quot;sprite&quot;, 0, 0) -- Draws the image &quot;sprite.png&quot; at the top left corner of the screen
+</code></pre>
+<h3 id="imagedrawuiexstring-image_filename-float-pos_x-float-pos_y-int-r-int-g-int-b-int-a-int-sorting_order">Image.DrawUIEx(string: image_filename, float: pos_x, float: pos_y, int: r, int: g, int: b, int: a, int: sorting_order)</h3>
+<p>Draw the given image file <code>image_filename.png</code> to the window with extended parameters:</p>
+<ul>
+<li>X position (world coordinates)</li>
+<li>Y position (world coordinates)</li>
+<li>Red color parameter (0-255)</li>
+<li>Green color parameter (0-255)</li>
+<li>Blue color parameter (0-255)</li>
+<li>Alpha parameter (0-255)</li>
+<li>Sorting order (relative to other rendered images)</li>
+</ul>
+<h4 id="usage_28">Usage</h4>
+<pre><code class="language-lua">-- Draws image &quot;sprite.png&quot; at window coordinate (0,0),
+-- with blue colors removed, at full opacity, sorted at order 10
+-- (the sorting order only matters if you have other images rendered on screen at the same time)
+Image.DrawUIEx(&quot;sprite&quot;, 0, 0, 255, 255, 0, 255, 10)
+</code></pre>
+<h3 id="imagedrawpixelint-x-int-y-int-r-int-g-int-b-int-a">Image.DrawPixel(int: x, int: y, int: r, int: g, int: b, int: a)</h3>
+<p>Draw a pixel of the given RGBA color to the screen at window coordinates (x,y)</p>
+<h4 id="usage_29">Usage</h4>
+<pre><code class="language-lua">Image.DrawPixel(100, 100, 255, 255, 255, 255) -- Draw a white pixel at window coordinates (100, 100)
+</code></pre>
+<h2 id="input">Input</h2>
+<p>Functions that manage input from the keyboard, mouse, or MIDI controller</p>
+<p>For a guide on which keys, mouse buttons, and MIDI keys can be queried, see the Input Guide page</p>
+<h3 id="inputgetkeydownstring-keycode-bool">Input.GetKeyDown(string: keycode) -&gt; bool</h3>
+<p>Returns true if the key <code>keycode</code> was pressed down this frame</p>
+<p>This function returns true only on the frame it's pressed, and doesn't return true again until the key is released and pressed again</p>
+<h4 id="usage_30">Usage</h4>
+<pre><code class="language-lua">-- The message only gets printed on the first frame the space key is pressed down
+if Input.GetKeyDown('space') then Console.Print('Space just pressed!') end
+</code></pre>
+<h3 id="inputgetkeystring-keycode-bool">Input.GetKey(string: keycode) -&gt; bool</h3>
+<p>Returns true if the key <code>keycode</code> is currently being pressed</p>
+<p>This function returns true every frame the key is held <strong>after</strong> the frame it was first pressed</p>
+<h4 id="usage_31">Usage</h4>
+<pre><code class="language-lua">-- The message gets printed every frame W is held down (except the frame it was first pressed)
+if Input.GetKeyPressed('w') then Console.Print('W is held down!') end
+</code></pre>
+<h3 id="inputgetkeyupstring-keycode-bool">Input.GetKeyUp(string: keycode) -&gt; bool</h3>
+<p>Returns true if the key <code>keycode</code> has just been released</p>
+<p>This function returns true only on the frame it's released, and doesn't return true again until the key is pressed and released again</p>
+<h4 id="usage_32">Usage</h4>
+<pre><code class="language-lua">-- The message only gets printed on the first frame W is released
+if Input.GetKeyUp('w') then Console.Print('W just released!') end
+</code></pre>
+<h3 id="inputgetmousebuttondownint-mouse_btn-bool">Input.GetMouseButtonDown(int: mouse_btn) -&gt; bool</h3>
+<p>Returns true if the mouse button <code>mouse_btn</code> was pressed down this frame</p>
+<p>This function returns true only on the frame it's pressed, and doesn't return true again until the button is released and pressed again</p>
+<h4 id="usage_33">Usage</h4>
+<pre><code class="language-lua">-- The message only gets printed on the first frame the left mouse button is pressed down
+if Input.GetMouseButtonDown(0) then Console.Print('Left click just pressed!') end
+</code></pre>
+<h3 id="inputgetmousebuttonint-mouse_btn-bool">Input.GetMouseButton(int: mouse_btn) -&gt; bool</h3>
+<p>Returns true if the mouse button <code>mouse_btn</code> is currently being pressed</p>
+<p>This function returns true every frame the mouse button is held <strong>after</strong> the frame it was first pressed</p>
+<h4 id="usage_34">Usage</h4>
+<pre><code class="language-lua">-- The message gets printed every frame the left mouse button is held down (except the frame it was first pressed)
+if Input.GetMouseButton(0) then Console.Print('Left click is held down!') end
+</code></pre>
+<h3 id="inputgetmousebuttonupint-mouse_btn-bool">Input.GetMouseButtonUp(int: mouse_btn) -&gt; bool</h3>
+<p>Returns true if the mouse button <code>mouse_btn</code> has just been released</p>
+<p>This function returns true only on the frame it's released, and doesn't return true again until the mouse button is pressed and released again</p>
+<h4 id="usage_35">Usage</h4>
+<pre><code class="language-lua">-- The message only gets printed the first frame left click is released
+if Input.GetMouseButtonUp(0) then Console.Print('Left click just released!') end
+</code></pre>
+<h3 id="inputgetmouseposition-vec2">Input.GetMousePosition() -&gt; vec2</h3>
+<p>Returns a vector of the current mouse position in window coordinates</p>
+<h4 id="usage_36">Usage</h4>
+<pre><code class="language-lua">mouse_pos = Input.GetMousePosition() -- Gets the vec2
+mouse_x = mouse_pos.x -- Mouse's X pos
+mouse_y = mouse_pos.y -- Mouse's Y pos
+</code></pre>
+<h3 id="inputgetmousescroll-float">Input.GetMouseScroll() -&gt; float</h3>
+<p>Gets the amount the mouse wheel has been scrolled this frame</p>
+<p>Delta is positive away from you and negative towards you</p>
+<h4 id="usage_37">Usage</h4>
+<pre><code class="language-lua">mouse_scroll = Input.GetMouseScroll() -- Gets the amount scrolled
+if mouse_scroll ~= 0 then Console.Print(&quot;Mouse scrolled: &quot; .. mouse_scroll) end -- Prints the amount scrolled only if it's been scrolled
+</code></pre>
+<h3 id="inputhidecursor">Input.HideCursor()</h3>
+<p>Hides the mouse cursor while it's over the window</p>
+<h4 id="usage_38">Usage</h4>
+<pre><code class="language-lua">Input.HideCursor() -- Hides the cursor
+</code></pre>
+<h3 id="inputshowcursor">Input.ShowCursor()</h3>
+<p>Shows the mouse cursor (e.g. after it's been hidden)</p>
+<h4 id="usage_39">Usage</h4>
+<pre><code class="language-lua">Input.ShowCursor() -- Shows the cursor
+</code></pre>
+<h3 id="inputenablemidicontrol">Input.EnableMIDIControl()</h3>
+<p>Enables a plugged-in MIDI controller to be used as input for your project</p>
+<p>This only needs to be called once for the entire program (e.g. in a component's OnStart)</p>
+<h4 id="usage_40">Usage</h4>
+<pre><code class="language-lua">key = Input.GetMIDI(60) -- Returns an error
+Input.EnableMIDIControl() -- Enables MIDI controller support
+key = Input.GetMIDI(60) -- Works!
+</code></pre>
+<h3 id="inputgetmididownint-midi_key-bool">Input.GetMIDIDown(int: midi_key) -&gt; bool</h3>
+<p>Returns true if the MIDI key <code>midi_key</code> was pressed down this frame</p>
+<p>This function returns true only on the frame it's pressed, and doesn't return true again until the key is released and pressed again</p>
+<h4 id="usage_41">Usage</h4>
+<pre><code class="language-lua">-- The message only gets printed on the first frame MIDI key 60 is pressed down
+if Input.GetMIDIDown(60) then Console.Print('MIDI key 60 just pressed!') end
+</code></pre>
+<h3 id="inputgetmidiint-midi_key-bool">Input.GetMIDI(int: midi_key) -&gt; bool</h3>
+<p>Returns true if the MIDI key <code>midi_key</code> is currently being pressed</p>
+<p>This function returns true every frame the key is held <strong>after</strong> the frame it was first pressed</p>
+<h4 id="usage_42">Usage</h4>
+<pre><code class="language-lua">-- The message gets printed every frame MIDI key 60 is held down (except the frame it was first pressed)
+if Input.GetMIDI(60) then Console.Print('MIDI key 60 is held down!') end
+</code></pre>
+<h3 id="inputgetmidiupint-midi_key-bool">Input.GetMIDIUp(int: midi_key) -&gt; bool</h3>
+<p>Returns true if the MIDI key <code>midi_key</code> has just been released</p>
+<p>This function returns true only on the frame it's released, and doesn't return true again until the key is pressed and released again</p>
+<h4 id="usage_43">Usage</h4>
+<pre><code class="language-lua">-- The message only gets printed the first frame MIDI key 60 is released
+if Input.GetMIDIUp(0) then Console.Print('MIDI key 60 just released!') end
+</code></pre>
+<h3 id="inputgetmidivelocityint-midi_key-int">Input.GetMIDIVelocity(int: midi_key) -&gt; int</h3>
+<p>Gets the velocity of the given MIDI key <code>midi_key</code> on the current frame</p>
+<p>If <code>midi_key</code> isn't an actual MIDI key, returns -1</p>
+<h4 id="usage_44">Usage</h4>
+<pre><code class="language-lua">vel = Input.GetMIDIVelocity(60) -- Get velocity of MIDI key 60
+if vel &gt; 0 then Console.Print('MIDI key 60 velocity: ' .. vel) -- Output the velocity of MIDI key 60 if it is being pressed
+</code></pre>
+<h2 id="raudio">RAudio</h2>
+<p>Functions that manage rendered audio (e.g. MP3 and WAV files)</p>
+<h3 id="raudioplayint-channel-string-trackname-bool-loop">RAudio.Play(int: channel, string: trackname, bool: loop)</h3>
+<p>Plays the audio file <code>trackname</code> on audio channel <code>channel</code></p>
+<p>If <code>loop</code> is set to true, loops indefinitely</p>
+<h4 id="usage_45">Usage</h4>
+<pre><code class="language-lua">RAudio.Play(0, &quot;song&quot;, true) -- Play &quot;song.wav/.mp3&quot; on channel 0, looping forever
+</code></pre>
+<h3 id="raudiopauseint-channel">RAudio.Pause(int: channel)</h3>
+<p>Pause the audio channel <code>channel</code></p>
+<h4 id="usage_46">Usage</h4>
+<pre><code class="language-lua">RAudio.Play(0, &quot;song&quot;, true) -- Play &quot;song.wav/.mp3&quot; on channel 0, looping forever
+Raudio.Pause(0) -- Pause channel 0
+-- (if you actually ran this code unmodified you wouldn't hear much at all)
+</code></pre>
+<h3 id="raudiopauseall">RAudio.PauseAll()</h3>
+<p>Pause all tracks currently playing</p>
+<h4 id="usage_47">Usage</h4>
+<pre><code class="language-lua">RAudio.PauseAll() -- Pauses all tracks playing
+</code></pre>
+<h3 id="raudioresumeint-channel">RAudio.Resume(int: channel)</h3>
+<p>Resume the paused audio channel <code>channel</code></p>
+<h4 id="usage_48">Usage</h4>
+<pre><code class="language-lua">RAudio.Pause(0) -- Pause channel 0
+RAudio.Resume(0) -- Resume channel 0
+</code></pre>
+<h3 id="raudioresumeall">RAudio.ResumeAll()</h3>
+<p>Resume all paused audio channels</p>
+<h4 id="usage_49">Usage</h4>
+<pre><code class="language-lua">RAudio.PauseAll() -- Pauses all channels
+RAudio.ResumeAll() -- Resumes all channels
+</code></pre>
+<h3 id="raudiosetgainint-channel-int-gain">RAudio.SetGain(int: channel, int: gain)</h3>
+<p>Set the audio channel's gain</p>
+<h4 id="usage_50">Usage</h4>
+<pre><code class="language-lua">RAudio.SetGain(0, 2) -- Set channel 0's gain to 2
+</code></pre>
+<h3 id="raudiosetlooppointsint-channel-int-start_pos-int-end_pos">RAudio.SetLoopPoints(int: channel, int: start_pos, int: end_pos)</h3>
+<p>Set loop points in milliseconds for the given audio channel, to be called before <code>RAudio.Play()</code></p>
+<p>The track will start at 0 ms when <code>RAudio.Play()</code> is called, and once it reaches <code>end_pos</code> the track will skip back to <code>start_pos</code></p>
+<h4 id="usage_51">Usage</h4>
+<pre><code class="language-lua">RAudio.SetLoopPoints(0, 1000, 5000) -- Set channel 0's loop points to start at 1s and end at 5s
+RAudio.Play(0, &quot;track&quot;, true) -- Play &quot;track.wav/.mp3&quot; at channel 0 (using the above loop points)
+</code></pre>
+<h3 id="raudioresetlooppointsint-channel">RAudio.ResetLoopPoints(int: channel)</h3>
+<p>Reset the loop points for <code>channel</code> to the actual start and end of the assigned audio file</p>
+<h4 id="usage_52">Usage</h4>
+<pre><code class="language-lua">RAudio.SetLoopPoints(0, 1000, 5000) -- Set channel 0's loop points to start at 1s and end at 5s
+RAudio.Play(0, &quot;track&quot;, true) -- Play &quot;track.wav/.mp3&quot; at channel 0 (using the above loop points)
+RAudio.ResetLoopPoints(0) -- Reset the loop points that we set above
+-- (if you were to actually run the above code, you wouldn't end up hearing the loop points at all)
+</code></pre>
+<h3 id="raudiogetbpmint-channel-int">RAudio.GetBPM(int: channel) -&gt; int</h3>
+<p>Get the BPM of the given channel</p>
+<p>If you haven't set a BPM for the track, this will return -1</p>
+<h4 id="usage_53">Usage</h4>
+<pre><code class="language-lua">RAudio.SetBPM(0, 120) -- Sets channel 0's BPM to 120
+RAudio.GetBPM(0) -- Returns 120
+</code></pre>
+<h3 id="raudiosetbpmint-channel-int-bpm">RAudio.SetBPM(int: channel, int: BPM)</h3>
+<h2 id="scene">Scene</h2>
+<p>Functions that get scene info</p>
+<h3 id="scenegetname-string">Scene.GetName() -&gt; string</h3>
+<p>Gets the current scene's name</p>
+<h4 id="usage_54">Usage</h4>
+<pre><code class="language-lua">curr_scene = Scene.GetName() -- Gets the current scene's name
+</code></pre>
+<h3 id="sceneswitchstring-scene_name">Scene.Switch(string: scene_name)</h3>
+<p>Switches the scene to the given scene <code>scene_name</code> (pulls from the file <code>scene_name.scene</code>)</p>
+<p>This unloads all actors and their components (<strong>does NOT call OnDestroy</strong>), and loads the actors and components of the new scene</p>
+<h4 id="usage_55">Usage</h4>
+<pre><code class="language-lua">Scene.Switch('scene2') -- Switches to the scene &quot;scene2.scene&quot;
+Scene.Switch(Scene.GetName()) -- Equivalent to reloading the current scene
+</code></pre>
+<h2 id="text">Text</h2>
+<p>Functions to render text on screen</p>
+<p>You must have a font file for text rendering to work</p>
+<h3 id="textdrawstring-text-int-x-int-y-string-font_file-int-font_size-int-r-int-g-int-b-int-a">Text.Draw(string: text, int: x, int: y, string: font_file, int: font_size, int: r, int: g, int: b, int: a)</h3>
+<p>Draws text to the screen with the following parameters:</p>
+<ul>
+<li>Text string to render</li>
+<li>X position (window coordinates)</li>
+<li>Y position (window coordinates)</li>
+<li>Font to use (<code>font_file.ttf</code>)</li>
+<li>Font size</li>
+<li>Red color parameter (0-255)</li>
+<li>Green color parameter (0-255)</li>
+<li>Blue color parameter (0-255)</li>
+<li>Alpha parameter (0-255)</li>
+</ul>
+<h4 id="usage_56">Usage</h4>
+<pre><code class="language-lua">-- Draws the text &quot;Hello!!!&quot; (without quotations) to the screen
+-- at the top left corner of the screen (0,0), using font &quot;font.ttf&quot;,
+-- at size 16, colored red, at full opacity
+Text.Draw(&quot;Hello!!!&quot;, 0, 0, &quot;font&quot;, 16, 255, 0, 0, 255)
+</code></pre>
+<h2 id="window">Window</h2>
+<p>Functions to get and manipulate window info</p>
+<h3 id="windowgetpos-ivec2">Window.GetPos() -&gt; ivec2</h3>
+<p>Get the window's position on the computer screen (relative to the top-left corner of the window)</p>
+<h4 id="usage_57">Usage</h4>
+<pre><code class="language-lua">window_pos = Window.GetPos() -- Get window position vector
+window_x = window_pos.x -- Get window X position
+window_y = window_pos.y -- Get window Y position
+</code></pre>
+<h3 id="windowsetposint-x-int-y">Window.SetPos(int: x, int: y)</h3>
+<p>Set the window's position on the computer screen (relative to the top-left corner of the window)</p>
+<pre><code class="language-lua">Window.SetPos(0, 0) -- Move the window to the top left corner of the screen
+</code></pre>
+<h3 id="windowgetsize-ivec2">Window.GetSize() -&gt; ivec2</h3>
+<p>Get the window's width and height in pixels (resolution)</p>
+<h4 id="usage_58">Usage</h4>
+<pre><code class="language-lua">window_size = Window.GetSize() -- Get window size vector
+window_width = window_size.x -- Get window width
+window_height = window_size.y -- Get window height
+</code></pre>
+<h3 id="windowsetsizeint-width-int-height">Window.SetSize(int: width, int: height)</h3>
+<p>Set the window's width and height in pixels (resolution)</p>
+<pre><code class="language-lua">Window.SetSize(1280, 720) -- Set the window's size (resolution) to 1280x720
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
