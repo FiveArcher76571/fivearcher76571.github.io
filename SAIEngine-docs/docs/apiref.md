@@ -697,3 +697,47 @@ Draws text to the screen with the following parameters:
 -- at size 16, colored red, at full opacity
 Text.Draw("Hello!!!", 0, 0, "font", 16, 255, 0, 0, 255)
 ```
+
+## Window
+
+Functions to get and manipulate window info
+
+### Window.GetPos() -> ivec2
+
+Get the window's position on the computer screen (relative to the top-left corner of the window)
+
+#### Usage
+
+```lua
+window_pos = Window.GetPos() -- Get window position vector
+window_x = window_pos.x -- Get window X position
+window_y = window_pos.y -- Get window Y position
+```
+
+### Window.SetPos(int: x, int: y)
+
+Set the window's position on the computer screen (relative to the top-left corner of the window)
+
+```lua
+Window.SetPos(0, 0) -- Move the window to the top left corner of the screen
+```
+
+### Window.GetSize() -> ivec2
+
+Get the window's width and height in pixels (resolution)
+
+#### Usage
+
+```lua
+window_size = Window.GetSize() -- Get window size vector
+window_width = window_size.x -- Get window width
+window_height = window_size.y -- Get window height
+```
+
+### Window.SetSize(int: width, int: height)
+
+Set the window's width and height in pixels (resolution)
+
+```lua
+Window.SetSize(1280, 720) -- Set the window's size (resolution) to 1280x720
+```
