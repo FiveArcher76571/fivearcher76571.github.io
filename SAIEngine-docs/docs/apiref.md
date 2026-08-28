@@ -646,6 +646,8 @@ if vel > 0 then Console.Print('MIDI key 60 velocity: ' .. vel) -- Output the vel
 
 Functions that manage rendered audio (e.g. MP3 and WAV files)
 
+Rendered audio support is enabled by default
+
 ### RAudio.Play(int: channel, string: trackname, bool: loop)
 
 Plays the audio file `trackname` on audio channel `channel`
@@ -819,6 +821,243 @@ RAudio.Play(0, "track", true) -- Play audio file "track.wav/.mp3" with looping o
 
 -- Only evaluates to true if, on this frame, the track is within 100ms of a new measure
 if RAudio.IsNewMeasure(0, 100) then Console.Log("New measure!!") end
+```
+
+## SAudio
+
+Functions that manage sequenced audio (e.g. MIDI files and SF2 soundfonts)
+
+Sequenced audio is disabled by default, and must be enabled by you
+
+### SAudio.Enable()
+
+Enables the use and playback of MIDI files and SF2 soundfonts
+
+This only needs to be called once for the entire program (e.g. in a component's OnStart)
+
+#### Usage
+
+```lua
+OnStart = function(self)
+
+    SAudio.LoadMIDI("midi_track") -- Throws an error
+    SAudio.Enable() -- Enables sequenced audio
+    SAudio.LoadMIDI("midi_track") -- Works!
+
+end
+```
+
+### SAudio.EnableMIDIController()
+
+Enable support for playing loaded soundfonts using a MIDI controller
+
+This only needs to be called once for the entire program (e.g. in a component's OnStart)
+
+#### Usage
+
+```lua
+SAudio.LoadSF2("soundfont") -- Can't play it with your controller
+SAudio.EnableMIDIController() -- Pressing keys will play notes!
+```
+
+### SAudio.LoadMIDI(string: midi_file)
+
+Loads the given MIDI file `midi_file.mid`
+
+This must be done before `SAudio.Play()` is called
+
+#### Usage
+
+```lua
+SAudio.Play(0) -- Does nothing
+SAudio.LoadMIDI("midi_file") -- Loads "midi_file.mid"
+SAudio.Play(0) -- Plays the file!
+-- Without loading a soundfont, you won't actually hear anything
+```
+
+### SAudio.LoadSF2(string: soundfont)
+
+Loads the given SF2 file `soundfont.sf2`
+
+This must be done before `SAudio.Play()` is called
+
+#### Usage
+
+```lua
+SAudio.LoadMIDI("midi_file") -- Loads "midi_file.mid"
+SAudio.LoadSF2("soundfont") -- Loads "soundfont.sf2"
+SAudio.Play(0) -- With the above line, plays the MIDI file with the soundfont!
+```
+
+### SAudio.Play(int: loops)
+
+Plays the loaded MIDI and SF2 with the given amount of loops (-1 for infinite loops)
+
+Without loading anything, this function won't do anything
+
+#### Usage
+
+```lua
+SAudio.Play(0) -- Does nothing
+SAudio.LoadMIDI("midi_file") -- Loads "midi_file.mid"
+SAudio.LoadSF2("soundfont") -- Loads "soundfont.sf2"
+SAudio.Play(0) -- Plays the files!
+```
+
+### SAudio.Pause()
+
+Pauses the currently playing track
+
+#### Usage
+
+```lua
+SAudio.Play(0) -- Plays things loaded
+SAudio.Pause() -- Pauses the track
+```
+
+### SAudio.Resume()
+
+Resumes the currently paused track
+
+#### Usage
+
+```lua
+SAudio.Pause() -- Pauses the track
+SAudio.Resume() -- Resumes the track
+```
+
+### SAudio.GetCurrentTick() -> int
+
+Gets the current playback position of the track in ticks
+
+Ticks are defined by the MIDI file, but generally 1 tick = 1 beat
+
+#### Usage
+
+```lua
+SAudio.Play(0) -- Play the track
+current_tick = SAudio.GetCurrentTick() -- Gets the progress
+-- Actually running this code would make current_tick = 0
+```
+
+### SAudio.GetBPM() -> int
+
+Get the BPM of the loaded track according to FluidSynth (the backend)
+
+#### Usage
+
+```lua
+SAudio.LoadMIDI("midi_file") -- Load the MIDI file (midi_file.mid was created at 120 BPM)
+bpm = SAudio.GetBPM() -- bpm = 120
+```
+
+### SAudio.SetBPM(int: bpm)
+
+Manually set a BPM for the loaded MIDI track
+
+This changes it for FluidSynth (the backend)
+
+#### Usage
+
+```lua
+SAudio.LoadMIDI("midi_file") -- Load the MIDI file (midi_file.mid was created at 120 BPM)
+bpm = SAudio.GetBPM() -- bpm = 120
+SAudio.SetBPM(60) -- Manually set the BPM to 60
+new_bpm = SAudio.GetBPM() -- new_bpm = 60
+```
+
+### SAudio.SetReverb(float: level)
+
+Set the reverb parameter (0 - 1 inclusive) for the loaded track
+
+#### Usage
+
+```lua
+SAudio.LoadMIDI("midi_file") -- Loads the MIDI file
+SAudio.SetReverb(0) -- Turn off reverb
+SAudio.SetReverb(1) -- Max out reverb
+```
+
+### SAudio.SetGain(float: level)
+
+Set the gain (0 - 1 inclusive, 1 by default) for the loaded track
+
+**WARNING: IT GETS REALLY LOUD PAST THE DEFAULT**
+
+#### Usage
+
+```lua
+SAudio.Play(0) -- Play the loaded file
+SAudio.SetGain(0.5) -- Set gain to 0.5 (quieter)
+```
+
+### SAudio.SetChannelVolume(int: channel, int: level)
+
+Set the given MIDI channel's volume to the given level (0 - 127 inclusive)
+
+You have 16 MIDI channels (0 - 15 inclusive)
+
+#### Usage
+
+```lua
+SAudio.Play(0) -- Play the loaded file
+SAudio.SetChannelVolume(6, 0) -- Mute MIDI channel 6
+SAudio.SetChannelVolume(10, 127) -- Max out MIDI channel 10's volume
+```
+
+### SAudio.SetLoopPoints(int: start_tick, int: end_tick)
+
+Set loop points in ticks for the given audio channel, to be called before `SAudio.Play()`
+
+The track will start at tick 0 when `SAudio.Play()` is called, and once it reaches `end_tick` the track will skip back to `start_tick`
+
+#### Usage
+
+```lua
+SAudio.SetLoopPoints(20, 50) -- Set the track's loop points to start at beat 20 and end at beat 50
+SAudio.Play(0) -- Play the loaded track (using the above loop points)
+```
+
+### SAudio.ResetLoopPoints()
+
+Reset the loop points to the actual start and end of the loaded MIDI file
+
+#### Usage
+
+```lua
+SAudio.SetLoopPoints(20, 50) -- Set the track's loop points to start at beat 20 and end at beat 50
+SAudio.Play(0) -- Play the loaded track (using the above loop points)
+SAudio.ResetLoopPoints() -- Reset the loop points that we set above
+-- (if you were to actually run the above code, you wouldn't end up hearing the loop points at all)
+```
+
+### SAudio.SendKeyOn(int: key, int: channel, int: velocity)
+
+Play MIDI key `key` on MIDI channel `channel` at velocity `velocity`
+
+These parameters match the MIDI standard in terms of ranges (e.g. channels 0-15, etc.)
+
+Won't do anything before `SAudio.LoadSF2()` is called
+
+#### Usage
+
+```lua
+SAudio.LoadSF2("soundfont") -- Load the soundfont
+SAudio.SendKeyOn(60, 0, 127) -- Send a note-on command for key 60 at channel 0 at velocity 127
+```
+
+### SAudio.SendKeyOff(int: key, int: channel)
+
+Release MIDI key `key` on MIDI channel `channel`
+
+These parameters match the MIDI standard in terms of ranges (e.g. channels 0-15, etc.)
+
+#### Usage
+
+```lua
+SAudio.SendKeyOn(60, 0, 127) -- Send a note-on command for key 60 at channel 0 at velocity 127
+SAudio.SendKeyOff(60, 1) -- Send a note-off command for a different key (if not on, does nothing)
+SAudio.SendKeyOff(60, 0) -- Send a note-off command for the above key
 ```
 
 ## Scene

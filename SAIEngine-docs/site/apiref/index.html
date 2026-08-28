@@ -125,6 +125,10 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+            <li class="nav-item" data-bs-level="2"><a href="#saudio" class="nav-link">SAudio</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-bs-level="2"><a href="#scene" class="nav-link">Scene</a>
               <ul class="nav flex-column">
               </ul>
@@ -514,6 +518,7 @@ if vel &gt; 0 then Console.Print('MIDI key 60 velocity: ' .. vel) -- Output the 
 </code></pre>
 <h2 id="raudio">RAudio</h2>
 <p>Functions that manage rendered audio (e.g. MP3 and WAV files)</p>
+<p>Rendered audio support is enabled by default</p>
 <h3 id="raudioplayint-channel-string-trackname-bool-loop">RAudio.Play(int: channel, string: trackname, bool: loop)</h3>
 <p>Plays the audio file <code>trackname</code> on audio channel <code>channel</code></p>
 <p>If <code>loop</code> is set to true, loops indefinitely</p>
@@ -613,17 +618,153 @@ RAudio.Play(0, &quot;track&quot;, true) -- Play audio file &quot;track.wav/.mp3&
 -- Only evaluates to true if, on this frame, the track is within 100ms of a new measure
 if RAudio.IsNewMeasure(0, 100) then Console.Log(&quot;New measure!!&quot;) end
 </code></pre>
+<h2 id="saudio">SAudio</h2>
+<p>Functions that manage sequenced audio (e.g. MIDI files and SF2 soundfonts)</p>
+<p>Sequenced audio is disabled by default, and must be enabled by you</p>
+<h3 id="saudioenable">SAudio.Enable()</h3>
+<p>Enables the use and playback of MIDI files and SF2 soundfonts</p>
+<p>This only needs to be called once for the entire program (e.g. in a component's OnStart)</p>
+<h4 id="usage_59">Usage</h4>
+<pre><code class="language-lua">OnStart = function(self)
+
+    SAudio.LoadMIDI(&quot;midi_track&quot;) -- Throws an error
+    SAudio.Enable() -- Enables sequenced audio
+    SAudio.LoadMIDI(&quot;midi_track&quot;) -- Works!
+
+end
+</code></pre>
+<h3 id="saudioenablemidicontroller">SAudio.EnableMIDIController()</h3>
+<p>Enable support for playing loaded soundfonts using a MIDI controller</p>
+<p>This only needs to be called once for the entire program (e.g. in a component's OnStart)</p>
+<h4 id="usage_60">Usage</h4>
+<pre><code class="language-lua">SAudio.LoadSF2(&quot;soundfont&quot;) -- Can't play it with your controller
+SAudio.EnableMIDIController() -- Pressing keys will play notes!
+</code></pre>
+<h3 id="saudioloadmidistring-midi_file">SAudio.LoadMIDI(string: midi_file)</h3>
+<p>Loads the given MIDI file <code>midi_file.mid</code></p>
+<p>This must be done before <code>SAudio.Play()</code> is called</p>
+<h4 id="usage_61">Usage</h4>
+<pre><code class="language-lua">SAudio.Play(0) -- Does nothing
+SAudio.LoadMIDI(&quot;midi_file&quot;) -- Loads &quot;midi_file.mid&quot;
+SAudio.Play(0) -- Plays the file!
+-- Without loading a soundfont, you won't actually hear anything
+</code></pre>
+<h3 id="saudioloadsf2string-soundfont">SAudio.LoadSF2(string: soundfont)</h3>
+<p>Loads the given SF2 file <code>soundfont.sf2</code></p>
+<p>This must be done before <code>SAudio.Play()</code> is called</p>
+<h4 id="usage_62">Usage</h4>
+<pre><code class="language-lua">SAudio.LoadMIDI(&quot;midi_file&quot;) -- Loads &quot;midi_file.mid&quot;
+SAudio.LoadSF2(&quot;soundfont&quot;) -- Loads &quot;soundfont.sf2&quot;
+SAudio.Play(0) -- With the above line, plays the MIDI file with the soundfont!
+</code></pre>
+<h3 id="saudioplayint-loops">SAudio.Play(int: loops)</h3>
+<p>Plays the loaded MIDI and SF2 with the given amount of loops (-1 for infinite loops)</p>
+<p>Without loading anything, this function won't do anything</p>
+<h4 id="usage_63">Usage</h4>
+<pre><code class="language-lua">SAudio.Play(0) -- Does nothing
+SAudio.LoadMIDI(&quot;midi_file&quot;) -- Loads &quot;midi_file.mid&quot;
+SAudio.LoadSF2(&quot;soundfont&quot;) -- Loads &quot;soundfont.sf2&quot;
+SAudio.Play(0) -- Plays the files!
+</code></pre>
+<h3 id="saudiopause">SAudio.Pause()</h3>
+<p>Pauses the currently playing track</p>
+<h4 id="usage_64">Usage</h4>
+<pre><code class="language-lua">SAudio.Play(0) -- Plays things loaded
+SAudio.Pause() -- Pauses the track
+</code></pre>
+<h3 id="saudioresume">SAudio.Resume()</h3>
+<p>Resumes the currently paused track</p>
+<h4 id="usage_65">Usage</h4>
+<pre><code class="language-lua">SAudio.Pause() -- Pauses the track
+SAudio.Resume() -- Resumes the track
+</code></pre>
+<h3 id="saudiogetcurrenttick-int">SAudio.GetCurrentTick() -&gt; int</h3>
+<p>Gets the current playback position of the track in ticks</p>
+<p>Ticks are defined by the MIDI file, but generally 1 tick = 1 beat</p>
+<h4 id="usage_66">Usage</h4>
+<pre><code class="language-lua">SAudio.Play(0) -- Play the track
+current_tick = SAudio.GetCurrentTick() -- Gets the progress
+-- Actually running this code would make current_tick = 0
+</code></pre>
+<h3 id="saudiogetbpm-int">SAudio.GetBPM() -&gt; int</h3>
+<p>Get the BPM of the loaded track according to FluidSynth (the backend)</p>
+<h4 id="usage_67">Usage</h4>
+<pre><code class="language-lua">SAudio.LoadMIDI(&quot;midi_file&quot;) -- Load the MIDI file (midi_file.mid was created at 120 BPM)
+bpm = SAudio.GetBPM() -- bpm = 120
+</code></pre>
+<h3 id="saudiosetbpmint-bpm">SAudio.SetBPM(int: bpm)</h3>
+<p>Manually set a BPM for the loaded MIDI track</p>
+<p>This changes it for FluidSynth (the backend)</p>
+<h4 id="usage_68">Usage</h4>
+<pre><code class="language-lua">SAudio.LoadMIDI(&quot;midi_file&quot;) -- Load the MIDI file (midi_file.mid was created at 120 BPM)
+bpm = SAudio.GetBPM() -- bpm = 120
+SAudio.SetBPM(60) -- Manually set the BPM to 60
+new_bpm = SAudio.GetBPM() -- new_bpm = 60
+</code></pre>
+<h3 id="saudiosetreverbfloat-level">SAudio.SetReverb(float: level)</h3>
+<p>Set the reverb parameter (0 - 1 inclusive) for the loaded track</p>
+<h4 id="usage_69">Usage</h4>
+<pre><code class="language-lua">SAudio.LoadMIDI(&quot;midi_file&quot;) -- Loads the MIDI file
+SAudio.SetReverb(0) -- Turn off reverb
+SAudio.SetReverb(1) -- Max out reverb
+</code></pre>
+<h3 id="saudiosetgainfloat-level">SAudio.SetGain(float: level)</h3>
+<p>Set the gain (0 - 1 inclusive, 1 by default) for the loaded track</p>
+<p><strong>WARNING: IT GETS REALLY LOUD PAST THE DEFAULT</strong></p>
+<h4 id="usage_70">Usage</h4>
+<pre><code class="language-lua">SAudio.Play(0) -- Play the loaded file
+SAudio.SetGain(0.5) -- Set gain to 0.5 (quieter)
+</code></pre>
+<h3 id="saudiosetchannelvolumeint-channel-int-level">SAudio.SetChannelVolume(int: channel, int: level)</h3>
+<p>Set the given MIDI channel's volume to the given level (0 - 127 inclusive)</p>
+<p>You have 16 MIDI channels (0 - 15 inclusive)</p>
+<h4 id="usage_71">Usage</h4>
+<pre><code class="language-lua">SAudio.Play(0) -- Play the loaded file
+SAudio.SetChannelVolume(6, 0) -- Mute MIDI channel 6
+SAudio.SetChannelVolume(10, 127) -- Max out MIDI channel 10's volume
+</code></pre>
+<h3 id="saudiosetlooppointsint-start_tick-int-end_tick">SAudio.SetLoopPoints(int: start_tick, int: end_tick)</h3>
+<p>Set loop points in ticks for the given audio channel, to be called before <code>SAudio.Play()</code></p>
+<p>The track will start at tick 0 when <code>SAudio.Play()</code> is called, and once it reaches <code>end_tick</code> the track will skip back to <code>start_tick</code></p>
+<h4 id="usage_72">Usage</h4>
+<pre><code class="language-lua">SAudio.SetLoopPoints(20, 50) -- Set the track's loop points to start at beat 20 and end at beat 50
+SAudio.Play(0) -- Play the loaded track (using the above loop points)
+</code></pre>
+<h3 id="saudioresetlooppoints">SAudio.ResetLoopPoints()</h3>
+<p>Reset the loop points to the actual start and end of the loaded MIDI file</p>
+<h4 id="usage_73">Usage</h4>
+<pre><code class="language-lua">SAudio.SetLoopPoints(20, 50) -- Set the track's loop points to start at beat 20 and end at beat 50
+SAudio.Play(0) -- Play the loaded track (using the above loop points)
+SAudio.ResetLoopPoints() -- Reset the loop points that we set above
+-- (if you were to actually run the above code, you wouldn't end up hearing the loop points at all)
+</code></pre>
+<h3 id="saudiosendkeyonint-key-int-channel-int-velocity">SAudio.SendKeyOn(int: key, int: channel, int: velocity)</h3>
+<p>Play MIDI key <code>key</code> on MIDI channel <code>channel</code> at velocity <code>velocity</code></p>
+<p>These parameters match the MIDI standard in terms of ranges (e.g. channels 0-15, etc.)</p>
+<p>Won't do anything before <code>SAudio.LoadSF2()</code> is called</p>
+<h4 id="usage_74">Usage</h4>
+<pre><code class="language-lua">SAudio.LoadSF2(&quot;soundfont&quot;) -- Load the soundfont
+SAudio.SendKeyOn(60, 0, 127) -- Send a note-on command for key 60 at channel 0 at velocity 127
+</code></pre>
+<h3 id="saudiosendkeyoffint-key-int-channel">SAudio.SendKeyOff(int: key, int: channel)</h3>
+<p>Release MIDI key <code>key</code> on MIDI channel <code>channel</code></p>
+<p>These parameters match the MIDI standard in terms of ranges (e.g. channels 0-15, etc.)</p>
+<h4 id="usage_75">Usage</h4>
+<pre><code class="language-lua">SAudio.SendKeyOn(60, 0, 127) -- Send a note-on command for key 60 at channel 0 at velocity 127
+SAudio.SendKeyOff(60, 1) -- Send a note-off command for a different key (if not on, does nothing)
+SAudio.SendKeyOff(60, 0) -- Send a note-off command for the above key
+</code></pre>
 <h2 id="scene">Scene</h2>
 <p>Functions that get scene info</p>
 <h3 id="scenegetname-string">Scene.GetName() -&gt; string</h3>
 <p>Gets the current scene's name</p>
-<h4 id="usage_59">Usage</h4>
+<h4 id="usage_76">Usage</h4>
 <pre><code class="language-lua">curr_scene = Scene.GetName() -- Gets the current scene's name
 </code></pre>
 <h3 id="sceneswitchstring-scene_name">Scene.Switch(string: scene_name)</h3>
 <p>Switches the scene to the given scene <code>scene_name</code> (pulls from the file <code>scene_name.scene</code>)</p>
 <p>This unloads all actors and their components (<strong>does NOT call OnDestroy</strong>), and loads the actors and components of the new scene</p>
-<h4 id="usage_60">Usage</h4>
+<h4 id="usage_77">Usage</h4>
 <pre><code class="language-lua">Scene.Switch('scene2') -- Switches to the scene &quot;scene2.scene&quot;
 Scene.Switch(Scene.GetName()) -- Equivalent to reloading the current scene
 </code></pre>
@@ -643,7 +784,7 @@ Scene.Switch(Scene.GetName()) -- Equivalent to reloading the current scene
 <li>Blue color parameter (0-255)</li>
 <li>Alpha parameter (0-255)</li>
 </ul>
-<h4 id="usage_61">Usage</h4>
+<h4 id="usage_78">Usage</h4>
 <pre><code class="language-lua">-- Draws the text &quot;Hello!!!&quot; (without quotations) to the screen
 -- at the top left corner of the screen (0,0), using font &quot;font.ttf&quot;,
 -- at size 16, colored red, at full opacity
@@ -653,7 +794,7 @@ Text.Draw(&quot;Hello!!!&quot;, 0, 0, &quot;font&quot;, 16, 255, 0, 0, 255)
 <p>Functions to get and manipulate window info</p>
 <h3 id="windowgetpos-ivec2">Window.GetPos() -&gt; ivec2</h3>
 <p>Get the window's position on the computer screen (relative to the top-left corner of the window)</p>
-<h4 id="usage_62">Usage</h4>
+<h4 id="usage_79">Usage</h4>
 <pre><code class="language-lua">window_pos = Window.GetPos() -- Get window position vector
 window_x = window_pos.x -- Get window X position
 window_y = window_pos.y -- Get window Y position
@@ -664,7 +805,7 @@ window_y = window_pos.y -- Get window Y position
 </code></pre>
 <h3 id="windowgetsize-ivec2">Window.GetSize() -&gt; ivec2</h3>
 <p>Get the window's width and height in pixels (resolution)</p>
-<h4 id="usage_63">Usage</h4>
+<h4 id="usage_80">Usage</h4>
 <pre><code class="language-lua">window_size = Window.GetSize() -- Get window size vector
 window_width = window_size.x -- Get window width
 window_height = window_size.y -- Get window height
